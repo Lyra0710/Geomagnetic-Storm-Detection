@@ -35,11 +35,11 @@ Our vision for this project includes creating a web application to deploy the mo
 
 ## Project Structure 📁
 
-Here's an overview of the project structure:
+Here's an overview of the naiming conventions and their content:
 
 - `data/`: Contains collected data.
 - `models/`: Stores trained machine learning models.
-- `notebooks/`: Jupyter notebooks for data exploration and model development.
+- `code/`: Jupyter notebooks for data exploration and model development.
 
 ## Getting Started 🏁
 
@@ -56,12 +56,9 @@ Contributions to this project are welcome! Feel free to submit issues or pull re
 
 ## License 📜
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under ........
 
 ## Acknowledgments 🙏
 
 We'd like to express our gratitude to NASA, NOAA, and the open data community for providing valuable resources for this project.
 
----
-
-For more details, contact us at [your-email@example.com](mailto:your-email@example.com).
