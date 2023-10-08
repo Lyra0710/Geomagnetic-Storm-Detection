@@ -34,6 +34,11 @@ Two models were employed in the project:
 ### Multiple Linear Regression, Polynomial Linear Regression, Decision Tree Regression, Random Forest Regression
 - These models were implemented by Aditya and were tested on the older Dataset from DSCOVR. 
 - Not good results.
+- R2 Scores:
+  - Multiple Linear Regression: 0.51
+  - Polynomial Linear Regression: -466.96
+  - Decision Tree Regression: 0.03
+  - Random Forest Regression: 0.45
 
 ### ARIMA Model
 - Preliminary implementations showed promise. 
