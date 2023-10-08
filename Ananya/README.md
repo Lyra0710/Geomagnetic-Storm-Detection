@@ -41,3 +41,5 @@ The model did not perform well. The accuracy scores were poor.
 ### ARIMA NN
 This model was promising. The Test RMSE score was 1.054. This model was hence used for the 'raw' DSCOVR 
 data as well. 
+
+If you have any queries regarding this, feel free to reach out at: ananyayallapragada@gmail.com
