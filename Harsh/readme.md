@@ -1,12 +1,9 @@
-Certainly! Based on the information you've provided, here is the content for your project's README file:
 
----
-
-# DSCOVR Project by Harsh Goyal
+# DSCOVR Project Report of work Done by Harsh Goyal
 
 ## Project Overview
 
-Welcome to the DSCOVR project, spearheaded by Harsh Goyal from India. This project focuses on analyzing and predicting space weather using data from the DSCOVR satellite. The project primarily utilizes datasets from official sources and applies advanced modeling techniques to understand and forecast space weather patterns.
+Welcome to the DSCOVR project, by Harsh Goyal from India. This project focuses on analyzing and predicting space weather using data from the DSCOVR satellite. The project primarily utilizes datasets from official sources and applies advanced modeling techniques to understand and forecast space weather patterns.
 
 ## Datasets Used
 
