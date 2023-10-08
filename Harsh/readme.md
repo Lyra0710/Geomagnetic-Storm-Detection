@@ -3,7 +3,7 @@
 
 ## Project Overview
 
-Welcome to the DSCOVR project, by Harsh Goyal from India. This project focuses on analyzing and predicting space weather using data from the DSCOVR satellite. The project primarily utilizes datasets from official sources and applies advanced modeling techniques to understand and forecast space weather patterns.
+Welcome to the DSCOVR project, My role in team was to prepare the dataset for modelling and implement a few models. The models which I worked on were ARIMA and LSTM.
 
 ## Datasets Used
 
