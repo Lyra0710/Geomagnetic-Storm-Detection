@@ -1,4 +1,4 @@
-# Exploring and Analyzing Space Weather Data 🌌📊
+# Exploring and Analyzing the L1 and L2 Data🌌📊
 
 ## Repository Files 📁📄
 
