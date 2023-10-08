@@ -1,0 +1,2784 @@
+2023-10-07 15:36:08
+
+--------------------------------------------------
+Code:
+import datetime
+
+def log_output_to_file(output_text, log_file_path):
+    timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    divider = '-' * 50  # Line divider
+    
+    with open(log_file_path, 'a') as log_file:
+        log_file.write(f'{timestamp}\n')
+        log_file.write(divider + '\n')
+        log_file.write(output_text)
+        log_file.write('\n\n')
+
+log_file_path = 'other_models.txt'
+
+Outputs:
+
+--------------------------------------------------
+
+Code:
+import pandas as pd
+
+Outputs:
+
+--------------------------------------------------
+
+Code:
+x = pd.read_csv('train-tests/x.csv')
+y = pd.read_csv('train-tests/y.csv')
+
+Outputs:
+
+--------------------------------------------------
+
+Code:
+print(x.shape, y.shape)
+
+Outputs:
+(1108, 28) (1108, 1)
+
+--------------------------------------------------
+
+Code:
+from sklearn.preprocessing import StandardScaler
+sc_X = StandardScaler()
+sc_y = StandardScaler()
+x_svm = sc_X.fit_transform(x)
+y_svm = sc_y.fit_transform(y)
+
+Outputs:
+
+--------------------------------------------------
+
+Code:
+# Train test split
+from sklearn.model_selection import train_test_split
+x_train, x_test, y_train, y_test = train_test_split(x_svm, y_svm, test_size=0.25)
+
+Outputs:
+
+--------------------------------------------------
+
+Code:
+from sklearn.svm import SVR
+regressor = SVR(kernel = 'rbf')
+regressor.fit(x_train, y_train)
+
+regressor2 = SVR(kernel='linear')
+regressor2.fit(x_train, y_train)
+
+regressor3 = SVR(kernel='poly')
+regressor3.fit(x_train, y_train)
+
+regressor4 = SVR(kernel='sigmoid')
+regressor4.fit(x_train, y_train)
+
+Outputs:
+c:\Users\hifia\anaconda3\envs\SpaceApps\lib\site-packages\sklearn\utils\validation.py:1184: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)
+c:\Users\hifia\anaconda3\envs\SpaceApps\lib\site-packages\sklearn\utils\validation.py:1184: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)
+c:\Users\hifia\anaconda3\envs\SpaceApps\lib\site-packages\sklearn\utils\validation.py:1184: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)
+c:\Users\hifia\anaconda3\envs\SpaceApps\lib\site-packages\sklearn\utils\validation.py:1184: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)
+
+--------------------------------------------------
+
+Code:
+print(x_test.shape, y_test.shape)
+
+Outputs:
+(277, 28) (277, 1)
+
+--------------------------------------------------
+
+Code:
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+import numpy as np
+y_pred = regressor.predict(x_test)
+mae = mean_absolute_error(y_test, y_pred)
+mse = mean_squared_error(y_test, y_pred)
+rmse = np.sqrt(mse)
+r2 = r2_score(y_test, y_pred)
+
+print(f"Mean Absolute Error (MAE): {mae:.2f}")
+print(f"Mean Squared Error (MSE): {mse:.2f}")
+print(f"Root Mean Squared Error (RMSE): {rmse:.2f}")
+print(f"R-squared (R2) Score: {r2:.2f}")
+
+
+Outputs:
+Mean Absolute Error (MAE): 0.69
+Mean Squared Error (MSE): 0.77
+Root Mean Squared Error (RMSE): 0.88
+R-squared (R2) Score: 0.07
+
+--------------------------------------------------
+
+Code:
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+import numpy as np
+y_pred = regressor2.predict(x_test)
+mae = mean_absolute_error(y_test, y_pred)
+mse = mean_squared_error(y_test, y_pred)
+rmse = np.sqrt(mse)
+r2 = r2_score(y_test, y_pred)
+
+print(f"Mean Absolute Error (MAE): {mae:.2f}")
+print(f"Mean Squared Error (MSE): {mse:.2f}")
+print(f"Root Mean Squared Error (RMSE): {rmse:.2f}")
+print(f"R-squared (R2) Score: {r2:.2f}")
+
+Outputs:
+Mean Absolute Error (MAE): 0.72
+Mean Squared Error (MSE): 1.32
+Root Mean Squared Error (RMSE): 1.15
+R-squared (R2) Score: -0.61
+
+--------------------------------------------------
+
+Code:
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+import numpy as np
+y_pred = regressor3.predict(x_test)
+mae = mean_absolute_error(y_test, y_pred)
+mse = mean_squared_error(y_test, y_pred)
+rmse = np.sqrt(mse)
+r2 = r2_score(y_test, y_pred)
+
+print(f"Mean Absolute Error (MAE): {mae:.2f}")
+print(f"Mean Squared Error (MSE): {mse:.2f}")
+print(f"Root Mean Squared Error (RMSE): {rmse:.2f}")
+print(f"R-squared (R2) Score: {r2:.2f}")
+
+Outputs:
+Mean Absolute Error (MAE): 0.79
+Mean Squared Error (MSE): 1.90
+Root Mean Squared Error (RMSE): 1.38
+R-squared (R2) Score: -1.31
+
+--------------------------------------------------
+
+Code:
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+import numpy as np
+y_pred = regressor3.predict(x_test)
+mae = mean_absolute_error(y_test, y_pred)
+mse = mean_squared_error(y_test, y_pred)
+rmse = np.sqrt(mse)
+r2 = r2_score(y_test, y_pred)
+
+print(f"Mean Absolute Error (MAE): {mae:.2f}")
+print(f"Mean Squared Error (MSE): {mse:.2f}")
+print(f"Root Mean Squared Error (RMSE): {rmse:.2f}")
+print(f"R-squared (R2) Score: {r2:.2f}")
+
+Outputs:
+Mean Absolute Error (MAE): 0.79
+Mean Squared Error (MSE): 1.90
+Root Mean Squared Error (RMSE): 1.38
+R-squared (R2) Score: -1.31
+
+--------------------------------------------------
+
+Code:
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv('../Datasets/Merged_Dataset.csv')
+df.iloc[-350:, :].plot(y='Kp', legend=True, figsize=(20,4))
+plt.show()
+
+Outputs:
+
+--------------------------------------------------
+
+Code:
+# Autocorrelation
+from pandas.plotting import autocorrelation_plot
+autocorrelation_plot(df.iloc[-200:, :]['Kp'])
+# plt.figure(20,4)
+plt.show()
+
+Outputs:
+
+--------------------------------------------------
+
+Code:
+def parse(x):
+    return datetime.strptime(x, '%Y %m %d %H')
+
+from statsmodels.tsa.arima.model import ARIMA
+
+arima = ARIMA(df['Kp'], order=(5,1,0))
+arima_fit = arima.fit()
+print(arima_fit.summary())
+
+Outputs:
+                               SARIMAX Results                                
+==============================================================================
+Dep. Variable:                     Kp   No. Observations:                 1108
+Model:                 ARIMA(5, 2, 0)   Log Likelihood               -1815.687
+Date:                Sat, 07 Oct 2023   AIC                           3643.374
+Time:                        15:26:00   BIC                           3673.425
+Sample:                             0   HQIC                          3654.740
+                               - 1108                                         
+Covariance Type:                  opg                                         
+==============================================================================
+                 coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+ar.L1         -1.1029      0.027    -41.411      0.000      -1.155      -1.051
+ar.L2         -0.9659      0.038    -25.124      0.000      -1.041      -0.891
+ar.L3         -0.7248      0.041    -17.680      0.000      -0.805      -0.644
+ar.L4         -0.4466      0.039    -11.474      0.000      -0.523      -0.370
+ar.L5         -0.2025      0.027     -7.442      0.000      -0.256      -0.149
+sigma2         1.5590      0.055     28.297      0.000       1.451       1.667
+===================================================================================
+Ljung-Box (L1) (Q):                   0.91   Jarque-Bera (JB):                52.94
+Prob(Q):                              0.34   Prob(JB):                         0.00
+Heteroskedasticity (H):               0.92   Skew:                             0.03
+Prob(H) (two-sided):                  0.44   Kurtosis:                         4.07
+===================================================================================
+
+Warnings:
+[1] Covariance matrix calculated using the outer product of gradients (complex-step).
+
+--------------------------------------------------
+
+Code:
+residuals = pd.DataFrame(arima_fit.resid)
+residuals.plot(figsize=(20,4))
+plt.show()
+
+Outputs:
+
+--------------------------------------------------
+
+Code:
+residuals.plot(kind='kde', figsize=(20,4))
+plt.show()
+
+Outputs:
+
+--------------------------------------------------
+
+Code:
+print(residuals.describe())
+
+Outputs:
+                 0
+count  1108.000000
+mean      0.001184
+std       1.251708
+min      -5.209509
+25%      -0.813092
+50%       0.023520
+75%       0.748055
+max       4.935481
+
+--------------------------------------------------
+
+Code:
+X = df['Kp'].values
+size = int(len(X) * 0.7)
+train, test = X[0:size], X[size:len(X)]
+history = [x for x in train]
+predictions = []
+counter = 0
+for t in range(len(test)):
+    arima = ARIMA(history, order=(5,1,0))
+    fit = arima.fit()
+    output = fit.forecast()
+    yhat = output[0]
+    predictions.append(yhat)
+    obs = test[t]
+    history.append(obs)
+    counter += 1
+    print(f"{counter}: Predicted={yhat}, Expected={obs}")
+
+
+Outputs:
+1: Predicted=1.3928813855391622, Expected=2.333
+2: Predicted=2.01608350170288, Expected=3.0
+3: Predicted=2.63882696749635, Expected=3.333
+4: Predicted=2.9494870913385105, Expected=2.667
+5: Predicted=2.5901080281949547, Expected=4.667
+6: Predicted=3.8188686610819564, Expected=2.667
+7: Predicted=2.974812591991218, Expected=1.0
+8: Predicted=1.8585909714554494, Expected=2.333
+9: Predicted=2.293178675533257, Expected=0.667
+10: Predicted=1.3786566531093207, Expected=0.667
+11: Predicted=1.2741992924247012, Expected=0.333
+12: Predicted=0.6660519184431388, Expected=0.667
+13: Predicted=0.7423474233626631, Expected=3.333
+14: Predicted=2.4278980253744304, Expected=2.667
+15: Predicted=2.3038893321228917, Expected=4.0
+16: Predicted=3.216006504920882, Expected=3.0
+17: Predicted=2.7563880843182713, Expected=4.667
+18: Predicted=3.927780449742694, Expected=4.333
+19: Predicted=4.102721273015728, Expected=2.0
+20: Predicted=2.754528143733581, Expected=3.333
+21: Predicted=3.238805359931403, Expected=3.667
+22: Predicted=3.499097429468383, Expected=0.667
+23: Predicted=1.9145647602919083, Expected=1.333
+24: Predicted=1.7230298659553103, Expected=1.333
+25: Predicted=1.4550270230058209, Expected=0.667
+26: Predicted=1.225524681916795, Expected=0.667
+27: Predicted=0.9733879421622835, Expected=0.667
+28: Predicted=0.7063943248047997, Expected=1.333
+29: Predicted=1.1721047500818196, Expected=3.667
+30: Predicted=2.6829852090324615, Expected=2.333
+31: Predicted=2.215209391742116, Expected=1.667
+32: Predicted=1.7981215452733956, Expected=1.0
+33: Predicted=1.2095005606638094, Expected=2.333
+34: Predicted=2.0736013097561736, Expected=3.0
+35: Predicted=2.7375068806856633, Expected=2.333
+36: Predicted=2.384974320421343, Expected=1.667
+37: Predicted=1.8407053760804437, Expected=1.0
+38: Predicted=1.3066375249953741, Expected=0.333
+39: Predicted=0.8796522843074084, Expected=1.333
+40: Predicted=1.3543635124855267, Expected=1.667
+41: Predicted=1.5572962978773779, Expected=2.333
+42: Predicted=2.004973778815091, Expected=2.333
+43: Predicted=2.039155086418022, Expected=0.667
+44: Predicted=1.0699060954863135, Expected=1.667
+45: Predicted=1.5487922143661705, Expected=1.667
+46: Predicted=1.6308482695509163, Expected=1.0
+47: Predicted=1.3480182676957744, Expected=1.667
+48: Predicted=1.555473149440554, Expected=2.0
+49: Predicted=1.736529974441453, Expected=2.333
+50: Predicted=2.12748844365847, Expected=3.333
+51: Predicted=2.7834451128277857, Expected=4.0
+52: Predicted=3.36715083869604, Expected=3.0
+53: Predicted=3.001979737902893, Expected=2.667
+54: Predicted=2.752475311331411, Expected=2.0
+55: Predicted=2.29721987660597, Expected=1.333
+56: Predicted=1.8791360603675415, Expected=1.0
+57: Predicted=1.506477386092969, Expected=1.667
+58: Predicted=1.715194631115665, Expected=0.333
+59: Predicted=0.8828965854201489, Expected=0.333
+60: Predicted=0.6428210230486452, Expected=2.0
+61: Predicted=1.4957180875587264, Expected=2.333
+62: Predicted=1.9636231619447997, Expected=2.0
+63: Predicted=1.9163260968037896, Expected=0.333
+64: Predicted=0.7438110168581574, Expected=3.0
+65: Predicted=2.2448982480968556, Expected=2.333
+66: Predicted=2.2322193654629428, Expected=0.667
+67: Predicted=1.3283135518768414, Expected=1.333
+68: Predicted=1.3270534458621919, Expected=2.667
+69: Predicted=2.1231283031622095, Expected=2.0
+70: Predicted=2.124135996900161, Expected=1.0
+71: Predicted=1.3850386923737703, Expected=1.667
+72: Predicted=1.5143731273069898, Expected=2.0
+73: Predicted=1.8443517841958403, Expected=0.667
+74: Predicted=1.1850445542012062, Expected=2.0
+75: Predicted=1.7558841434864414, Expected=0.667
+76: Predicted=0.9504678211212529, Expected=3.0
+77: Predicted=2.3816419505357187, Expected=2.333
+78: Predicted=2.1569053838714205, Expected=1.667
+79: Predicted=1.813180348865229, Expected=1.0
+80: Predicted=1.3025775115515312, Expected=4.0
+81: Predicted=2.999870207434818, Expected=2.0
+82: Predicted=2.2981350396603095, Expected=1.333
+83: Predicted=1.771358548307179, Expected=1.333
+84: Predicted=1.457209016057625, Expected=1.667
+85: Predicted=1.6481022971269341, Expected=0.333
+86: Predicted=1.0277102063494707, Expected=0.0
+87: Predicted=0.45683655500043624, Expected=1.333
+88: Predicted=1.0556010406930016, Expected=2.667
+89: Predicted=2.0228857436305487, Expected=4.0
+90: Predicted=3.1272118300531453, Expected=5.0
+91: Predicted=3.9673243644004077, Expected=5.333
+92: Predicted=4.501473206709021, Expected=3.333
+93: Predicted=3.5701456109174634, Expected=0.667
+94: Predicted=1.82239400791462, Expected=0.0
+95: Predicted=1.0237304341194444, Expected=0.0
+96: Predicted=0.787966459202445, Expected=0.333
+97: Predicted=0.8610182498805177, Expected=1.0
+98: Predicted=1.0275777501142729, Expected=3.0
+99: Predicted=2.138325546042273, Expected=0.333
+100: Predicted=0.7097906471329742, Expected=2.0
+101: Predicted=1.5689463048945056, Expected=2.667
+102: Predicted=2.08712938087141, Expected=4.0
+103: Predicted=3.274064556306164, Expected=0.667
+104: Predicted=1.5506790099293881, Expected=1.0
+105: Predicted=1.1859457478760578, Expected=1.333
+106: Predicted=1.3996910569645795, Expected=1.667
+107: Predicted=1.7180540152403292, Expected=1.333
+108: Predicted=1.6198290769134687, Expected=2.0
+109: Predicted=1.7018043967031655, Expected=1.667
+110: Predicted=1.6102762015312513, Expected=1.667
+111: Predicted=1.651285032992375, Expected=1.0
+112: Predicted=1.2454347068005869, Expected=1.333
+113: Predicted=1.3390272020911866, Expected=1.333
+114: Predicted=1.3923801676005751, Expected=1.0
+115: Predicted=1.158969552172458, Expected=0.667
+116: Predicted=0.8916622723323918, Expected=1.0
+117: Predicted=0.9707582270296332, Expected=0.667
+118: Predicted=0.8076800233131819, Expected=1.667
+119: Predicted=1.3991173494584506, Expected=2.0
+120: Predicted=1.6877332754727739, Expected=1.333
+121: Predicted=1.359137052086438, Expected=2.0
+122: Predicted=1.7594993323011259, Expected=2.0
+123: Predicted=1.8030746010623993, Expected=0.667
+124: Predicted=1.112320456051205, Expected=1.0
+125: Predicted=1.166581971432494, Expected=0.667
+126: Predicted=0.8483492245203361, Expected=1.333
+127: Predicted=1.2862947503425208, Expected=0.333
+128: Predicted=0.6941565458384673, Expected=1.333
+129: Predicted=1.0989052115515845, Expected=1.333
+130: Predicted=1.2031229389879987, Expected=0.333
+131: Predicted=0.6138636740603299, Expected=0.333
+132: Predicted=0.5370347293387592, Expected=1.0
+133: Predicted=0.8020792461153192, Expected=1.0
+134: Predicted=0.9750786371266394, Expected=1.667
+135: Predicted=1.4200910147058645, Expected=0.333
+136: Predicted=0.5879022799184779, Expected=2.667
+137: Predicted=1.9319929722595528, Expected=1.667
+138: Predicted=1.621208736883618, Expected=2.333
+139: Predicted=2.057822244196616, Expected=2.0
+140: Predicted=1.9615276929538144, Expected=1.667
+141: Predicted=1.657580321818036, Expected=1.333
+142: Predicted=1.60238219963554, Expected=2.0
+143: Predicted=1.8527001520275643, Expected=3.0
+144: Predicted=2.6006258862143037, Expected=1.333
+145: Predicted=1.7018059983735094, Expected=2.333
+146: Predicted=2.1354810229209615, Expected=2.333
+147: Predicted=2.1617151159709067, Expected=1.0
+148: Predicted=1.4624484570989815, Expected=1.333
+149: Predicted=1.5585645053504613, Expected=3.0
+150: Predicted=2.3944445878440193, Expected=3.333
+151: Predicted=2.9402419907630577, Expected=1.333
+152: Predicted=1.844317300452294, Expected=1.0
+153: Predicted=1.2968885717996945, Expected=2.0
+154: Predicted=1.80240475540655, Expected=2.0
+155: Predicted=2.0352098008273507, Expected=2.667
+156: Predicted=2.5072194072824097, Expected=2.667
+157: Predicted=2.4147007364317408, Expected=2.0
+158: Predicted=2.0429917664560295, Expected=2.333
+159: Predicted=2.280253787628717, Expected=2.0
+160: Predicted=2.0824082836235838, Expected=1.333
+161: Predicted=1.696353671415202, Expected=0.667
+162: Predicted=1.1522468644384973, Expected=1.0
+163: Predicted=1.1454033729028323, Expected=0.333
+164: Predicted=0.7271818009428013, Expected=0.333
+165: Predicted=0.5914727769242776, Expected=0.667
+166: Predicted=0.6711361154935616, Expected=0.0
+167: Predicted=0.22202273020698793, Expected=0.667
+168: Predicted=0.5904754719823628, Expected=1.667
+169: Predicted=1.1958106138381113, Expected=3.0
+170: Predicted=2.2164177698860974, Expected=2.0
+171: Predicted=1.8882052670681233, Expected=0.333
+172: Predicted=0.7843402188706422, Expected=1.0
+173: Predicted=1.0309922924552803, Expected=0.667
+174: Predicted=0.8868817763507459, Expected=1.333
+175: Predicted=1.3759314632737145, Expected=2.0
+176: Predicted=1.7306079147954672, Expected=1.667
+177: Predicted=1.5028110366726988, Expected=1.333
+178: Predicted=1.3787100525191593, Expected=3.333
+179: Predicted=2.5633765561133552, Expected=2.333
+180: Predicted=2.258096098479439, Expected=1.667
+181: Predicted=1.918457463892701, Expected=2.333
+182: Predicted=2.1752631530475828, Expected=1.333
+183: Predicted=1.575081854354941, Expected=1.667
+184: Predicted=1.8671112464790642, Expected=1.333
+185: Predicted=1.5162234411986575, Expected=2.0
+186: Predicted=1.838892644678465, Expected=0.0
+187: Predicted=0.7048785976368328, Expected=0.333
+188: Predicted=0.5876457680822691, Expected=2.0
+189: Predicted=1.5560577259838921, Expected=1.0
+190: Predicted=1.1133256023428468, Expected=2.0
+191: Predicted=1.767041395521493, Expected=1.0
+192: Predicted=1.042037653695721, Expected=2.0
+193: Predicted=1.6649584558947785, Expected=1.333
+194: Predicted=1.4758661087299476, Expected=0.667
+195: Predicted=0.9491927146473877, Expected=1.667
+196: Predicted=1.5236462856041268, Expected=1.0
+197: Predicted=1.1031294799408218, Expected=2.0
+198: Predicted=1.778454240429347, Expected=2.667
+199: Predicted=2.21650049305482, Expected=2.333
+200: Predicted=2.1313738417460697, Expected=3.667
+201: Predicted=3.0759736285583292, Expected=2.333
+202: Predicted=2.3856426796847847, Expected=3.333
+203: Predicted=3.042098580561273, Expected=4.667
+204: Predicted=3.988451884410959, Expected=4.667
+205: Predicted=4.242616789233178, Expected=4.667
+206: Predicted=4.463181020564641, Expected=5.333
+207: Predicted=4.814029569352888, Expected=4.667
+208: Predicted=4.631327905178412, Expected=3.333
+209: Predicted=3.890712109603813, Expected=1.333
+210: Predicted=2.405188141990984, Expected=2.667
+211: Predicted=2.861421966456744, Expected=1.0
+212: Predicted=1.8477934286315387, Expected=1.333
+213: Predicted=1.778902055855568, Expected=2.0
+214: Predicted=1.9477492268584722, Expected=1.0
+215: Predicted=1.2528946761364586, Expected=0.667
+216: Predicted=1.0445373651164447, Expected=1.667
+217: Predicted=1.400025663518944, Expected=4.0
+218: Predicted=3.0109396629853213, Expected=1.667
+219: Predicted=1.986363413260861, Expected=2.333
+220: Predicted=2.1911684402026292, Expected=3.333
+221: Predicted=2.7570023710634417, Expected=0.667
+222: Predicted=1.4013533549342823, Expected=2.0
+223: Predicted=2.128766505320258, Expected=0.667
+224: Predicted=1.0513383487929508, Expected=1.667
+225: Predicted=1.6487032401622679, Expected=1.0
+226: Predicted=1.3040134047766005, Expected=3.0
+227: Predicted=2.2818792584009584, Expected=0.0
+228: Predicted=0.7977357559523437, Expected=1.333
+229: Predicted=1.197831939608213, Expected=1.333
+230: Predicted=1.288994031601704, Expected=3.0
+231: Predicted=2.318982337693611, Expected=1.333
+232: Predicted=1.7420683958613137, Expected=2.333
+233: Predicted=1.935963705394402, Expected=0.333
+234: Predicted=0.9317579373204993, Expected=1.333
+235: Predicted=1.2742840003950264, Expected=0.0
+236: Predicted=0.6615095194131544, Expected=0.0
+237: Predicted=0.2843640735752516, Expected=0.667
+238: Predicted=0.7085159084548363, Expected=1.333
+239: Predicted=0.9747158594341504, Expected=1.0
+240: Predicted=1.0185779305526772, Expected=1.333
+241: Predicted=1.0956011236550323, Expected=1.333
+242: Predicted=1.1543168239823234, Expected=1.0
+243: Predicted=1.0452925613767154, Expected=0.667
+244: Predicted=0.8684798983009521, Expected=5.333
+245: Predicted=3.6067340630532243, Expected=4.0
+246: Predicted=3.5342555993780707, Expected=5.0
+247: Predicted=4.271760539046667, Expected=2.0
+248: Predicted=2.6241743358334735, Expected=3.0
+249: Predicted=2.7711640628736425, Expected=1.667
+250: Predicted=2.484063105918916, Expected=4.333
+251: Predicted=3.667682655276894, Expected=2.667
+252: Predicted=3.1796938312988354, Expected=1.333
+253: Predicted=1.8408094492998943, Expected=4.0
+254: Predicted=3.346168701730873, Expected=2.0
+255: Predicted=2.3142781231165626, Expected=0.667
+256: Predicted=1.5802296116330654, Expected=1.667
+257: Predicted=1.7257796494200786, Expected=1.0
+258: Predicted=1.1923287099673863, Expected=1.333
+259: Predicted=1.5839290858692978, Expected=0.667
+260: Predicted=0.9885254031596062, Expected=0.333
+261: Predicted=0.5359438640598981, Expected=3.0
+262: Predicted=2.153785641996704, Expected=3.333
+263: Predicted=2.6845723433198247, Expected=2.667
+264: Predicted=2.5404332890849832, Expected=2.667
+265: Predicted=2.477162511438987, Expected=3.333
+266: Predicted=2.84389857153759, Expected=4.333
+267: Predicted=3.828893878683046, Expected=3.333
+268: Predicted=3.46249597472603, Expected=4.333
+269: Predicted=3.929475518579001, Expected=5.0
+270: Predicted=4.475536028549328, Expected=5.667
+271: Predicted=5.105848334690378, Expected=4.333
+272: Predicted=4.5897413443197, Expected=5.667
+273: Predicted=5.156806753063643, Expected=3.667
+274: Predicted=4.216965535813897, Expected=3.667
+275: Predicted=3.998206681100219, Expected=3.667
+276: Predicted=3.971084779022167, Expected=2.333
+277: Predicted=2.9531538956276604, Expected=3.333
+278: Predicted=3.4530877191631446, Expected=2.667
+279: Predicted=2.9113626418858267, Expected=2.333
+280: Predicted=2.617643926423572, Expected=2.0
+281: Predicted=2.3335122731211264, Expected=1.333
+282: Predicted=1.6971121748709053, Expected=2.0
+283: Predicted=2.0464501989362622, Expected=2.333
+284: Predicted=2.2272865960142996, Expected=2.0
+285: Predicted=2.0657850833356974, Expected=1.333
+286: Predicted=1.611688735354797, Expected=2.667
+287: Predicted=2.2338512392080796, Expected=1.333
+288: Predicted=1.6667570301148822, Expected=2.0
+289: Predicted=1.9437125016525973, Expected=2.0
+290: Predicted=1.9690693873276517, Expected=2.333
+291: Predicted=2.113666217452059, Expected=2.0
+292: Predicted=2.118553416717147, Expected=0.667
+293: Predicted=1.1505549387498477, Expected=5.667
+294: Predicted=3.9784835219282293, Expected=5.667
+295: Predicted=4.734934475735557, Expected=4.0
+296: Predicted=4.075153173317355, Expected=3.333
+297: Predicted=3.539783160496438, Expected=2.333
+298: Predicted=2.6390596429173137, Expected=3.333
+299: Predicted=3.4748024132088235, Expected=4.667
+300: Predicted=4.314719419848141, Expected=5.0
+301: Predicted=4.58646714614591, Expected=3.333
+302: Predicted=3.6759173136727927, Expected=3.667
+303: Predicted=3.6082150441487366, Expected=3.333
+304: Predicted=3.483429001133352, Expected=2.667
+305: Predicted=3.1252831887236394, Expected=2.333
+306: Predicted=2.8023696580572284, Expected=2.0
+307: Predicted=2.323404068110243, Expected=0.667
+308: Predicted=1.435840264849535, Expected=0.667
+309: Predicted=1.1339633304996939, Expected=0.0
+310: Predicted=0.5442001812417196, Expected=2.0
+311: Predicted=1.559933651697456, Expected=3.667
+312: Predicted=2.794786543643039, Expected=2.667
+313: Predicted=2.432514803813, Expected=0.667
+314: Predicted=1.2312302513962983, Expected=1.667
+315: Predicted=1.5025252194272172, Expected=2.667
+316: Predicted=2.323576473464337, Expected=2.0
+317: Predicted=2.2009600609530997, Expected=2.333
+318: Predicted=2.2747673829108206, Expected=3.667
+319: Predicted=2.9541848881007797, Expected=2.0
+320: Predicted=2.262106192557549, Expected=1.667
+321: Predicted=2.003752266194551, Expected=1.667
+322: Predicted=1.8231994842752264, Expected=3.0
+323: Predicted=2.596658325431126, Expected=1.0
+324: Predicted=1.6802397037044026, Expected=1.667
+325: Predicted=1.6961685111846303, Expected=1.333
+326: Predicted=1.476473503948092, Expected=1.0
+327: Predicted=1.2016326857739403, Expected=1.333
+328: Predicted=1.4619188255697122, Expected=2.0
+329: Predicted=1.6838347731719723, Expected=2.0
+330: Predicted=1.8609533191980787, Expected=3.0
+331: Predicted=2.4928382477927444, Expected=2.333
+332: Predicted=2.24395085810234, Expected=1.667
+333: Predicted=1.8539221590494968, Expected=2.0
+
+--------------------------------------------------
+
+Code:
+from sklearn.metrics import mean_squared_error, r2_score
+error = mean_squared_error(test, predictions)
+print(f"Test MSE: {error}")
+
+rmse = np.sqrt(error)
+print(f"Test RMSE: {rmse}")
+
+# Use r2 score
+r2 = r2_score(test, predictions)
+print(f"R2 Score: {r2}")
+
+Outputs:
+Test MSE: 1.1952196517066407
+Test RMSE: 1.0932610171896924
+R2 Score: 0.23246562913043933
+
+--------------------------------------------------
+
+Code:
+plt.figure(figsize=(20, 6))
+plt.plot(test)
+plt.plot(predictions, color='red')
+plt.show()
+
+Outputs:
+
+--------------------------------------------------
+
+
+--------------------------------------------------
+
+--------------------------------------------------
+
+2023-10-07 15:59:20
+
+--------------------------------------------------
+Code:
+import datetime
+
+def log_output_to_file(output_text, log_file_path):
+    timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    divider = '-' * 50  # Line divider
+    
+    with open(log_file_path, 'a') as log_file:
+        log_file.write(f'{timestamp}\n')
+        log_file.write(divider + '\n')
+        log_file.write(output_text)
+        log_file.write('\n\n')
+
+log_file_path = 'other_models.txt'
+
+Outputs:
+
+--------------------------------------------------
+
+Code:
+import pandas as pd
+
+Outputs:
+
+--------------------------------------------------
+
+Code:
+x = pd.read_csv('train-tests/x.csv')
+y = pd.read_csv('train-tests/y.csv')
+
+Outputs:
+
+--------------------------------------------------
+
+Code:
+print(x.shape, y.shape)
+
+Outputs:
+(1108, 28) (1108, 1)
+
+--------------------------------------------------
+
+Code:
+from sklearn.preprocessing import StandardScaler
+sc_X = StandardScaler()
+sc_y = StandardScaler()
+x_svm = sc_X.fit_transform(x)
+y_svm = sc_y.fit_transform(y)
+
+Outputs:
+
+--------------------------------------------------
+
+Code:
+# Train test split
+from sklearn.model_selection import train_test_split
+x_train, x_test, y_train, y_test = train_test_split(x_svm, y_svm, test_size=0.25)
+
+Outputs:
+
+--------------------------------------------------
+
+Code:
+from sklearn.svm import SVR
+regressor = SVR(kernel = 'rbf')
+regressor.fit(x_train, y_train)
+
+regressor2 = SVR(kernel='linear')
+regressor2.fit(x_train, y_train)
+
+regressor3 = SVR(kernel='poly')
+regressor3.fit(x_train, y_train)
+
+regressor4 = SVR(kernel='sigmoid')
+regressor4.fit(x_train, y_train)
+
+Outputs:
+c:\Users\hifia\anaconda3\envs\SpaceApps\lib\site-packages\sklearn\utils\validation.py:1184: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)
+c:\Users\hifia\anaconda3\envs\SpaceApps\lib\site-packages\sklearn\utils\validation.py:1184: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)
+c:\Users\hifia\anaconda3\envs\SpaceApps\lib\site-packages\sklearn\utils\validation.py:1184: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)
+c:\Users\hifia\anaconda3\envs\SpaceApps\lib\site-packages\sklearn\utils\validation.py:1184: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)
+
+--------------------------------------------------
+
+Code:
+print(x_test.shape, y_test.shape)
+
+Outputs:
+(277, 28) (277, 1)
+
+--------------------------------------------------
+
+Code:
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+import numpy as np
+y_pred = regressor.predict(x_test)
+mae = mean_absolute_error(y_test, y_pred)
+mse = mean_squared_error(y_test, y_pred)
+rmse = np.sqrt(mse)
+r2 = r2_score(y_test, y_pred)
+
+print(f"Mean Absolute Error (MAE): {mae:.2f}")
+print(f"Mean Squared Error (MSE): {mse:.2f}")
+print(f"Root Mean Squared Error (RMSE): {rmse:.2f}")
+print(f"R-squared (R2) Score: {r2:.2f}")
+
+
+Outputs:
+Mean Absolute Error (MAE): 0.69
+Mean Squared Error (MSE): 0.77
+Root Mean Squared Error (RMSE): 0.88
+R-squared (R2) Score: 0.07
+
+--------------------------------------------------
+
+Code:
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+import numpy as np
+y_pred = regressor2.predict(x_test)
+mae = mean_absolute_error(y_test, y_pred)
+mse = mean_squared_error(y_test, y_pred)
+rmse = np.sqrt(mse)
+r2 = r2_score(y_test, y_pred)
+
+print(f"Mean Absolute Error (MAE): {mae:.2f}")
+print(f"Mean Squared Error (MSE): {mse:.2f}")
+print(f"Root Mean Squared Error (RMSE): {rmse:.2f}")
+print(f"R-squared (R2) Score: {r2:.2f}")
+
+Outputs:
+Mean Absolute Error (MAE): 0.72
+Mean Squared Error (MSE): 1.32
+Root Mean Squared Error (RMSE): 1.15
+R-squared (R2) Score: -0.61
+
+--------------------------------------------------
+
+Code:
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+import numpy as np
+y_pred = regressor3.predict(x_test)
+mae = mean_absolute_error(y_test, y_pred)
+mse = mean_squared_error(y_test, y_pred)
+rmse = np.sqrt(mse)
+r2 = r2_score(y_test, y_pred)
+
+print(f"Mean Absolute Error (MAE): {mae:.2f}")
+print(f"Mean Squared Error (MSE): {mse:.2f}")
+print(f"Root Mean Squared Error (RMSE): {rmse:.2f}")
+print(f"R-squared (R2) Score: {r2:.2f}")
+
+Outputs:
+Mean Absolute Error (MAE): 0.79
+Mean Squared Error (MSE): 1.90
+Root Mean Squared Error (RMSE): 1.38
+R-squared (R2) Score: -1.31
+
+--------------------------------------------------
+
+Code:
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+import numpy as np
+y_pred = regressor3.predict(x_test)
+mae = mean_absolute_error(y_test, y_pred)
+mse = mean_squared_error(y_test, y_pred)
+rmse = np.sqrt(mse)
+r2 = r2_score(y_test, y_pred)
+
+print(f"Mean Absolute Error (MAE): {mae:.2f}")
+print(f"Mean Squared Error (MSE): {mse:.2f}")
+print(f"Root Mean Squared Error (RMSE): {rmse:.2f}")
+print(f"R-squared (R2) Score: {r2:.2f}")
+
+Outputs:
+Mean Absolute Error (MAE): 0.79
+Mean Squared Error (MSE): 1.90
+Root Mean Squared Error (RMSE): 1.38
+R-squared (R2) Score: -1.31
+
+--------------------------------------------------
+
+Code:
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+
+config = (5,1,0)
+train_size = 0.7
+
+df = pd.read_csv('../Datasets/Merged_Dataset.csv')
+df.iloc[-350:, :].plot(y='Kp', legend=True, figsize=(20,4))
+plt.show()
+
+Outputs:
+
+--------------------------------------------------
+
+Code:
+# Autocorrelation
+from pandas.plotting import autocorrelation_plot
+autocorrelation_plot(df.iloc[-200:, :]['Kp'])
+# plt.figure(20,4)
+plt.show()
+
+Outputs:
+
+--------------------------------------------------
+
+Code:
+def parse(x):
+    return datetime.strptime(x, '%Y %m %d %H')
+
+from statsmodels.tsa.arima.model import ARIMA
+
+arima = ARIMA(df['Kp'], order=config)
+arima_fit = arima.fit()
+print(arima_fit.summary())
+
+Outputs:
+                               SARIMAX Results                                
+==============================================================================
+Dep. Variable:                     Kp   No. Observations:                 1108
+Model:                 ARIMA(5, 1, 0)   Log Likelihood               -1662.916
+Date:                Sat, 07 Oct 2023   AIC                           3337.832
+Time:                        15:46:50   BIC                           3367.889
+Sample:                             0   HQIC                          3349.199
+                               - 1108                                         
+Covariance Type:                  opg                                         
+==============================================================================
+                 coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+ar.L1         -0.3930      0.027    -14.741      0.000      -0.445      -0.341
+ar.L2         -0.2377      0.031     -7.696      0.000      -0.298      -0.177
+ar.L3         -0.1639      0.030     -5.423      0.000      -0.223      -0.105
+ar.L4         -0.1197      0.028     -4.232      0.000      -0.175      -0.064
+ar.L5         -0.1038      0.028     -3.713      0.000      -0.159      -0.049
+sigma2         1.1809      0.042     28.426      0.000       1.099       1.262
+===================================================================================
+Ljung-Box (L1) (Q):                   0.12   Jarque-Bera (JB):                74.99
+Prob(Q):                              0.73   Prob(JB):                         0.00
+Heteroskedasticity (H):               0.90   Skew:                             0.36
+Prob(H) (two-sided):                  0.30   Kurtosis:                         4.06
+===================================================================================
+
+Warnings:
+[1] Covariance matrix calculated using the outer product of gradients (complex-step).
+
+--------------------------------------------------
+
+Code:
+residuals = pd.DataFrame(arima_fit.resid)
+residuals.plot(figsize=(20,4))
+plt.show()
+
+Outputs:
+
+--------------------------------------------------
+
+Code:
+residuals.plot(kind='kde', figsize=(20,4))
+plt.show()
+
+Outputs:
+
+--------------------------------------------------
+
+Code:
+print(residuals.describe())
+
+Outputs:
+                 0
+count  1108.000000
+mean      0.001658
+std       1.088998
+min      -3.529157
+25%      -0.675991
+50%      -0.046415
+75%       0.646599
+max       4.918384
+
+--------------------------------------------------
+
+Code:
+X = df['Kp'].values
+size = int(len(X) * train_size)
+train, test = X[0:size], X[size:len(X)]
+history = [x for x in train]
+predictions = []
+counter = 0
+for t in range(len(test)):
+    arima = ARIMA(history, order=config)
+    fit = arima.fit()
+    output = fit.forecast()
+    yhat = output[0]
+    predictions.append(yhat)
+    obs = test[t]
+    history.append(obs)
+    counter += 1
+    print(f"{counter}: Predicted={yhat}, Expected={obs}")
+
+
+Outputs:
+1: Predicted=1.3928813855391622, Expected=2.333
+2: Predicted=2.01608350170288, Expected=3.0
+3: Predicted=2.63882696749635, Expected=3.333
+4: Predicted=2.9494870913385105, Expected=2.667
+5: Predicted=2.5901080281949547, Expected=4.667
+6: Predicted=3.8188686610819564, Expected=2.667
+7: Predicted=2.974812591991218, Expected=1.0
+8: Predicted=1.8585909714554494, Expected=2.333
+9: Predicted=2.293178675533257, Expected=0.667
+10: Predicted=1.3786566531093207, Expected=0.667
+11: Predicted=1.2741992924247012, Expected=0.333
+12: Predicted=0.6660519184431388, Expected=0.667
+13: Predicted=0.7423474233626631, Expected=3.333
+14: Predicted=2.4278980253744304, Expected=2.667
+15: Predicted=2.3038893321228917, Expected=4.0
+16: Predicted=3.216006504920882, Expected=3.0
+17: Predicted=2.7563880843182713, Expected=4.667
+18: Predicted=3.927780449742694, Expected=4.333
+19: Predicted=4.102721273015728, Expected=2.0
+20: Predicted=2.754528143733581, Expected=3.333
+21: Predicted=3.238805359931403, Expected=3.667
+22: Predicted=3.499097429468383, Expected=0.667
+23: Predicted=1.9145647602919083, Expected=1.333
+24: Predicted=1.7230298659553103, Expected=1.333
+25: Predicted=1.4550270230058209, Expected=0.667
+26: Predicted=1.225524681916795, Expected=0.667
+27: Predicted=0.9733879421622835, Expected=0.667
+28: Predicted=0.7063943248047997, Expected=1.333
+29: Predicted=1.1721047500818196, Expected=3.667
+30: Predicted=2.6829852090324615, Expected=2.333
+31: Predicted=2.215209391742116, Expected=1.667
+32: Predicted=1.7981215452733956, Expected=1.0
+33: Predicted=1.2095005606638094, Expected=2.333
+34: Predicted=2.0736013097561736, Expected=3.0
+35: Predicted=2.7375068806856633, Expected=2.333
+36: Predicted=2.384974320421343, Expected=1.667
+37: Predicted=1.8407053760804437, Expected=1.0
+38: Predicted=1.3066375249953741, Expected=0.333
+39: Predicted=0.8796522843074084, Expected=1.333
+40: Predicted=1.3543635124855267, Expected=1.667
+41: Predicted=1.5572962978773779, Expected=2.333
+42: Predicted=2.004973778815091, Expected=2.333
+43: Predicted=2.039155086418022, Expected=0.667
+44: Predicted=1.0699060954863135, Expected=1.667
+45: Predicted=1.5487922143661705, Expected=1.667
+46: Predicted=1.6308482695509163, Expected=1.0
+47: Predicted=1.3480182676957744, Expected=1.667
+48: Predicted=1.555473149440554, Expected=2.0
+49: Predicted=1.736529974441453, Expected=2.333
+50: Predicted=2.12748844365847, Expected=3.333
+51: Predicted=2.7834451128277857, Expected=4.0
+52: Predicted=3.36715083869604, Expected=3.0
+53: Predicted=3.001979737902893, Expected=2.667
+54: Predicted=2.752475311331411, Expected=2.0
+55: Predicted=2.29721987660597, Expected=1.333
+56: Predicted=1.8791360603675415, Expected=1.0
+57: Predicted=1.506477386092969, Expected=1.667
+58: Predicted=1.715194631115665, Expected=0.333
+59: Predicted=0.8828965854201489, Expected=0.333
+60: Predicted=0.6428210230486452, Expected=2.0
+61: Predicted=1.4957180875587264, Expected=2.333
+62: Predicted=1.9636231619447997, Expected=2.0
+63: Predicted=1.9163260968037896, Expected=0.333
+64: Predicted=0.7438110168581574, Expected=3.0
+65: Predicted=2.2448982480968556, Expected=2.333
+66: Predicted=2.2322193654629428, Expected=0.667
+67: Predicted=1.3283135518768414, Expected=1.333
+68: Predicted=1.3270534458621919, Expected=2.667
+69: Predicted=2.1231283031622095, Expected=2.0
+70: Predicted=2.124135996900161, Expected=1.0
+71: Predicted=1.3850386923737703, Expected=1.667
+72: Predicted=1.5143731273069898, Expected=2.0
+73: Predicted=1.8443517841958403, Expected=0.667
+74: Predicted=1.1850445542012062, Expected=2.0
+75: Predicted=1.7558841434864414, Expected=0.667
+76: Predicted=0.9504678211212529, Expected=3.0
+77: Predicted=2.3816419505357187, Expected=2.333
+78: Predicted=2.1569053838714205, Expected=1.667
+79: Predicted=1.813180348865229, Expected=1.0
+80: Predicted=1.3025775115515312, Expected=4.0
+81: Predicted=2.999870207434818, Expected=2.0
+82: Predicted=2.2981350396603095, Expected=1.333
+83: Predicted=1.771358548307179, Expected=1.333
+84: Predicted=1.457209016057625, Expected=1.667
+85: Predicted=1.6481022971269341, Expected=0.333
+86: Predicted=1.0277102063494707, Expected=0.0
+87: Predicted=0.45683655500043624, Expected=1.333
+88: Predicted=1.0556010406930016, Expected=2.667
+89: Predicted=2.0228857436305487, Expected=4.0
+90: Predicted=3.1272118300531453, Expected=5.0
+91: Predicted=3.9673243644004077, Expected=5.333
+92: Predicted=4.501473206709021, Expected=3.333
+93: Predicted=3.5701456109174634, Expected=0.667
+94: Predicted=1.82239400791462, Expected=0.0
+95: Predicted=1.0237304341194444, Expected=0.0
+96: Predicted=0.787966459202445, Expected=0.333
+97: Predicted=0.8610182498805177, Expected=1.0
+98: Predicted=1.0275777501142729, Expected=3.0
+99: Predicted=2.138325546042273, Expected=0.333
+100: Predicted=0.7097906471329742, Expected=2.0
+101: Predicted=1.5689463048945056, Expected=2.667
+102: Predicted=2.08712938087141, Expected=4.0
+103: Predicted=3.274064556306164, Expected=0.667
+104: Predicted=1.5506790099293881, Expected=1.0
+105: Predicted=1.1859457478760578, Expected=1.333
+106: Predicted=1.3996910569645795, Expected=1.667
+107: Predicted=1.7180540152403292, Expected=1.333
+108: Predicted=1.6198290769134687, Expected=2.0
+109: Predicted=1.7018043967031655, Expected=1.667
+110: Predicted=1.6102762015312513, Expected=1.667
+111: Predicted=1.651285032992375, Expected=1.0
+112: Predicted=1.2454347068005869, Expected=1.333
+113: Predicted=1.3390272020911866, Expected=1.333
+114: Predicted=1.3923801676005751, Expected=1.0
+115: Predicted=1.158969552172458, Expected=0.667
+116: Predicted=0.8916622723323918, Expected=1.0
+117: Predicted=0.9707582270296332, Expected=0.667
+118: Predicted=0.8076800233131819, Expected=1.667
+119: Predicted=1.3991173494584506, Expected=2.0
+120: Predicted=1.6877332754727739, Expected=1.333
+121: Predicted=1.359137052086438, Expected=2.0
+122: Predicted=1.7594993323011259, Expected=2.0
+123: Predicted=1.8030746010623993, Expected=0.667
+124: Predicted=1.112320456051205, Expected=1.0
+125: Predicted=1.166581971432494, Expected=0.667
+126: Predicted=0.8483492245203361, Expected=1.333
+127: Predicted=1.2862947503425208, Expected=0.333
+128: Predicted=0.6941565458384673, Expected=1.333
+129: Predicted=1.0989052115515845, Expected=1.333
+130: Predicted=1.2031229389879987, Expected=0.333
+131: Predicted=0.6138636740603299, Expected=0.333
+132: Predicted=0.5370347293387592, Expected=1.0
+133: Predicted=0.8020792461153192, Expected=1.0
+134: Predicted=0.9750786371266394, Expected=1.667
+135: Predicted=1.4200910147058645, Expected=0.333
+136: Predicted=0.5879022799184779, Expected=2.667
+137: Predicted=1.9319929722595528, Expected=1.667
+138: Predicted=1.621208736883618, Expected=2.333
+139: Predicted=2.057822244196616, Expected=2.0
+140: Predicted=1.9615276929538144, Expected=1.667
+141: Predicted=1.657580321818036, Expected=1.333
+142: Predicted=1.60238219963554, Expected=2.0
+143: Predicted=1.8527001520275643, Expected=3.0
+144: Predicted=2.6006258862143037, Expected=1.333
+145: Predicted=1.7018059983735094, Expected=2.333
+146: Predicted=2.1354810229209615, Expected=2.333
+147: Predicted=2.1617151159709067, Expected=1.0
+148: Predicted=1.4624484570989815, Expected=1.333
+149: Predicted=1.5585645053504613, Expected=3.0
+150: Predicted=2.3944445878440193, Expected=3.333
+151: Predicted=2.9402419907630577, Expected=1.333
+152: Predicted=1.844317300452294, Expected=1.0
+153: Predicted=1.2968885717996945, Expected=2.0
+154: Predicted=1.80240475540655, Expected=2.0
+155: Predicted=2.0352098008273507, Expected=2.667
+156: Predicted=2.5072194072824097, Expected=2.667
+157: Predicted=2.4147007364317408, Expected=2.0
+158: Predicted=2.0429917664560295, Expected=2.333
+159: Predicted=2.280253787628717, Expected=2.0
+160: Predicted=2.0824082836235838, Expected=1.333
+161: Predicted=1.696353671415202, Expected=0.667
+162: Predicted=1.1522468644384973, Expected=1.0
+163: Predicted=1.1454033729028323, Expected=0.333
+164: Predicted=0.7271818009428013, Expected=0.333
+165: Predicted=0.5914727769242776, Expected=0.667
+166: Predicted=0.6711361154935616, Expected=0.0
+167: Predicted=0.22202273020698793, Expected=0.667
+168: Predicted=0.5904754719823628, Expected=1.667
+169: Predicted=1.1958106138381113, Expected=3.0
+170: Predicted=2.2164177698860974, Expected=2.0
+171: Predicted=1.8882052670681233, Expected=0.333
+172: Predicted=0.7843402188706422, Expected=1.0
+173: Predicted=1.0309922924552803, Expected=0.667
+174: Predicted=0.8868817763507459, Expected=1.333
+175: Predicted=1.3759314632737145, Expected=2.0
+176: Predicted=1.7306079147954672, Expected=1.667
+177: Predicted=1.5028110366726988, Expected=1.333
+178: Predicted=1.3787100525191593, Expected=3.333
+179: Predicted=2.5633765561133552, Expected=2.333
+180: Predicted=2.258096098479439, Expected=1.667
+181: Predicted=1.918457463892701, Expected=2.333
+182: Predicted=2.1752631530475828, Expected=1.333
+183: Predicted=1.575081854354941, Expected=1.667
+184: Predicted=1.8671112464790642, Expected=1.333
+185: Predicted=1.5162234411986575, Expected=2.0
+186: Predicted=1.838892644678465, Expected=0.0
+187: Predicted=0.7048785976368328, Expected=0.333
+188: Predicted=0.5876457680822691, Expected=2.0
+189: Predicted=1.5560577259838921, Expected=1.0
+190: Predicted=1.1133256023428468, Expected=2.0
+191: Predicted=1.767041395521493, Expected=1.0
+192: Predicted=1.042037653695721, Expected=2.0
+193: Predicted=1.6649584558947785, Expected=1.333
+194: Predicted=1.4758661087299476, Expected=0.667
+195: Predicted=0.9491927146473877, Expected=1.667
+196: Predicted=1.5236462856041268, Expected=1.0
+197: Predicted=1.1031294799408218, Expected=2.0
+198: Predicted=1.778454240429347, Expected=2.667
+199: Predicted=2.21650049305482, Expected=2.333
+200: Predicted=2.1313738417460697, Expected=3.667
+201: Predicted=3.0759736285583292, Expected=2.333
+202: Predicted=2.3856426796847847, Expected=3.333
+203: Predicted=3.042098580561273, Expected=4.667
+204: Predicted=3.988451884410959, Expected=4.667
+205: Predicted=4.242616789233178, Expected=4.667
+206: Predicted=4.463181020564641, Expected=5.333
+207: Predicted=4.814029569352888, Expected=4.667
+208: Predicted=4.631327905178412, Expected=3.333
+209: Predicted=3.890712109603813, Expected=1.333
+210: Predicted=2.405188141990984, Expected=2.667
+211: Predicted=2.861421966456744, Expected=1.0
+212: Predicted=1.8477934286315387, Expected=1.333
+213: Predicted=1.778902055855568, Expected=2.0
+214: Predicted=1.9477492268584722, Expected=1.0
+215: Predicted=1.2528946761364586, Expected=0.667
+216: Predicted=1.0445373651164447, Expected=1.667
+217: Predicted=1.400025663518944, Expected=4.0
+218: Predicted=3.0109396629853213, Expected=1.667
+219: Predicted=1.986363413260861, Expected=2.333
+220: Predicted=2.1911684402026292, Expected=3.333
+221: Predicted=2.7570023710634417, Expected=0.667
+222: Predicted=1.4013533549342823, Expected=2.0
+223: Predicted=2.128766505320258, Expected=0.667
+224: Predicted=1.0513383487929508, Expected=1.667
+225: Predicted=1.6487032401622679, Expected=1.0
+226: Predicted=1.3040134047766005, Expected=3.0
+227: Predicted=2.2818792584009584, Expected=0.0
+228: Predicted=0.7977357559523437, Expected=1.333
+229: Predicted=1.197831939608213, Expected=1.333
+230: Predicted=1.288994031601704, Expected=3.0
+231: Predicted=2.318982337693611, Expected=1.333
+232: Predicted=1.7420683958613137, Expected=2.333
+233: Predicted=1.935963705394402, Expected=0.333
+234: Predicted=0.9317579373204993, Expected=1.333
+235: Predicted=1.2742840003950264, Expected=0.0
+236: Predicted=0.6615095194131544, Expected=0.0
+237: Predicted=0.2843640735752516, Expected=0.667
+238: Predicted=0.7085159084548363, Expected=1.333
+239: Predicted=0.9747158594341504, Expected=1.0
+240: Predicted=1.0185779305526772, Expected=1.333
+241: Predicted=1.0956011236550323, Expected=1.333
+242: Predicted=1.1543168239823234, Expected=1.0
+243: Predicted=1.0452925613767154, Expected=0.667
+244: Predicted=0.8684798983009521, Expected=5.333
+245: Predicted=3.6067340630532243, Expected=4.0
+246: Predicted=3.5342555993780707, Expected=5.0
+247: Predicted=4.271760539046667, Expected=2.0
+248: Predicted=2.6241743358334735, Expected=3.0
+249: Predicted=2.7711640628736425, Expected=1.667
+250: Predicted=2.484063105918916, Expected=4.333
+251: Predicted=3.667682655276894, Expected=2.667
+252: Predicted=3.1796938312988354, Expected=1.333
+253: Predicted=1.8408094492998943, Expected=4.0
+254: Predicted=3.346168701730873, Expected=2.0
+255: Predicted=2.3142781231165626, Expected=0.667
+256: Predicted=1.5802296116330654, Expected=1.667
+257: Predicted=1.7257796494200786, Expected=1.0
+258: Predicted=1.1923287099673863, Expected=1.333
+259: Predicted=1.5839290858692978, Expected=0.667
+260: Predicted=0.9885254031596062, Expected=0.333
+261: Predicted=0.5359438640598981, Expected=3.0
+262: Predicted=2.153785641996704, Expected=3.333
+263: Predicted=2.6845723433198247, Expected=2.667
+264: Predicted=2.5404332890849832, Expected=2.667
+265: Predicted=2.477162511438987, Expected=3.333
+266: Predicted=2.84389857153759, Expected=4.333
+267: Predicted=3.828893878683046, Expected=3.333
+268: Predicted=3.46249597472603, Expected=4.333
+269: Predicted=3.929475518579001, Expected=5.0
+270: Predicted=4.475536028549328, Expected=5.667
+271: Predicted=5.105848334690378, Expected=4.333
+272: Predicted=4.5897413443197, Expected=5.667
+273: Predicted=5.156806753063643, Expected=3.667
+274: Predicted=4.216965535813897, Expected=3.667
+275: Predicted=3.998206681100219, Expected=3.667
+276: Predicted=3.971084779022167, Expected=2.333
+277: Predicted=2.9531538956276604, Expected=3.333
+278: Predicted=3.4530877191631446, Expected=2.667
+279: Predicted=2.9113626418858267, Expected=2.333
+280: Predicted=2.617643926423572, Expected=2.0
+281: Predicted=2.3335122731211264, Expected=1.333
+282: Predicted=1.6971121748709053, Expected=2.0
+283: Predicted=2.0464501989362622, Expected=2.333
+284: Predicted=2.2272865960142996, Expected=2.0
+285: Predicted=2.0657850833356974, Expected=1.333
+286: Predicted=1.611688735354797, Expected=2.667
+287: Predicted=2.2338512392080796, Expected=1.333
+288: Predicted=1.6667570301148822, Expected=2.0
+289: Predicted=1.9437125016525973, Expected=2.0
+290: Predicted=1.9690693873276517, Expected=2.333
+291: Predicted=2.113666217452059, Expected=2.0
+292: Predicted=2.118553416717147, Expected=0.667
+293: Predicted=1.1505549387498477, Expected=5.667
+294: Predicted=3.9784835219282293, Expected=5.667
+295: Predicted=4.734934475735557, Expected=4.0
+296: Predicted=4.075153173317355, Expected=3.333
+297: Predicted=3.539783160496438, Expected=2.333
+298: Predicted=2.6390596429173137, Expected=3.333
+299: Predicted=3.4748024132088235, Expected=4.667
+300: Predicted=4.314719419848141, Expected=5.0
+301: Predicted=4.58646714614591, Expected=3.333
+302: Predicted=3.6759173136727927, Expected=3.667
+303: Predicted=3.6082150441487366, Expected=3.333
+304: Predicted=3.483429001133352, Expected=2.667
+305: Predicted=3.1252831887236394, Expected=2.333
+306: Predicted=2.8023696580572284, Expected=2.0
+307: Predicted=2.323404068110243, Expected=0.667
+308: Predicted=1.435840264849535, Expected=0.667
+309: Predicted=1.1339633304996939, Expected=0.0
+310: Predicted=0.5442001812417196, Expected=2.0
+311: Predicted=1.559933651697456, Expected=3.667
+312: Predicted=2.794786543643039, Expected=2.667
+313: Predicted=2.432514803813, Expected=0.667
+314: Predicted=1.2312302513962983, Expected=1.667
+315: Predicted=1.5025252194272172, Expected=2.667
+316: Predicted=2.323576473464337, Expected=2.0
+317: Predicted=2.2009600609530997, Expected=2.333
+318: Predicted=2.2747673829108206, Expected=3.667
+319: Predicted=2.9541848881007797, Expected=2.0
+320: Predicted=2.262106192557549, Expected=1.667
+321: Predicted=2.003752266194551, Expected=1.667
+322: Predicted=1.8231994842752264, Expected=3.0
+323: Predicted=2.596658325431126, Expected=1.0
+324: Predicted=1.6802397037044026, Expected=1.667
+325: Predicted=1.6961685111846303, Expected=1.333
+326: Predicted=1.476473503948092, Expected=1.0
+327: Predicted=1.2016326857739403, Expected=1.333
+328: Predicted=1.4619188255697122, Expected=2.0
+329: Predicted=1.6838347731719723, Expected=2.0
+330: Predicted=1.8609533191980787, Expected=3.0
+331: Predicted=2.4928382477927444, Expected=2.333
+332: Predicted=2.24395085810234, Expected=1.667
+333: Predicted=1.8539221590494968, Expected=2.0
+
+--------------------------------------------------
+
+Code:
+from sklearn.metrics import mean_squared_error, r2_score
+error = mean_squared_error(test, predictions)
+print(f"Test MSE: {error}")
+
+rmse = np.sqrt(error)
+print(f"Test RMSE: {rmse}")
+
+# Use r2 score
+r2 = r2_score(test, predictions)
+print(f"R2 Score: {r2}")
+
+Outputs:
+Test MSE: 1.1952196517066407
+Test RMSE: 1.0932610171896924
+R2 Score: 0.23246562913043933
+
+--------------------------------------------------
+
+Code:
+plt.figure(figsize=(20, 6))
+plt.plot(test)
+plt.plot(predictions, color='red')
+plt.show()
+
+Outputs:
+
+--------------------------------------------------
+
+
+--------------------------------------------------
+
+--------------------------------------------------
+
+2023-10-07 16:01:53
+
+--------------------------------------------------
+Code:
+import datetime
+
+def log_output_to_file(output_text, log_file_path):
+    timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    divider = '-' * 50  # Line divider
+    
+    with open(log_file_path, 'a') as log_file:
+        log_file.write(f'{timestamp}\n')
+        log_file.write(divider + '\n')
+        log_file.write(output_text)
+        log_file.write('\n\n')
+
+log_file_path = 'other_models.txt'
+
+Outputs:
+
+--------------------------------------------------
+
+Code:
+import pandas as pd
+
+Outputs:
+
+--------------------------------------------------
+
+Code:
+x = pd.read_csv('train-tests/x.csv')
+y = pd.read_csv('train-tests/y.csv')
+
+Outputs:
+
+--------------------------------------------------
+
+Code:
+print(x.shape, y.shape)
+
+Outputs:
+(1108, 28) (1108, 1)
+
+--------------------------------------------------
+
+Code:
+from sklearn.preprocessing import StandardScaler
+sc_X = StandardScaler()
+sc_y = StandardScaler()
+x_svm = sc_X.fit_transform(x)
+y_svm = sc_y.fit_transform(y)
+
+Outputs:
+
+--------------------------------------------------
+
+Code:
+# Train test split
+from sklearn.model_selection import train_test_split
+x_train, x_test, y_train, y_test = train_test_split(x_svm, y_svm, test_size=0.25)
+
+Outputs:
+
+--------------------------------------------------
+
+Code:
+from sklearn.svm import SVR
+regressor = SVR(kernel = 'rbf')
+regressor.fit(x_train, y_train)
+
+regressor2 = SVR(kernel='linear')
+regressor2.fit(x_train, y_train)
+
+regressor3 = SVR(kernel='poly')
+regressor3.fit(x_train, y_train)
+
+regressor4 = SVR(kernel='sigmoid')
+regressor4.fit(x_train, y_train)
+
+Outputs:
+c:\Users\hifia\anaconda3\envs\SpaceApps\lib\site-packages\sklearn\utils\validation.py:1184: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)
+c:\Users\hifia\anaconda3\envs\SpaceApps\lib\site-packages\sklearn\utils\validation.py:1184: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)
+c:\Users\hifia\anaconda3\envs\SpaceApps\lib\site-packages\sklearn\utils\validation.py:1184: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)
+c:\Users\hifia\anaconda3\envs\SpaceApps\lib\site-packages\sklearn\utils\validation.py:1184: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)
+
+--------------------------------------------------
+
+Code:
+print(x_test.shape, y_test.shape)
+
+Outputs:
+(277, 28) (277, 1)
+
+--------------------------------------------------
+
+Code:
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+import numpy as np
+y_pred = regressor.predict(x_test)
+mae = mean_absolute_error(y_test, y_pred)
+mse = mean_squared_error(y_test, y_pred)
+rmse = np.sqrt(mse)
+r2 = r2_score(y_test, y_pred)
+
+print(f"Mean Absolute Error (MAE): {mae:.2f}")
+print(f"Mean Squared Error (MSE): {mse:.2f}")
+print(f"Root Mean Squared Error (RMSE): {rmse:.2f}")
+print(f"R-squared (R2) Score: {r2:.2f}")
+
+
+Outputs:
+Mean Absolute Error (MAE): 0.69
+Mean Squared Error (MSE): 0.77
+Root Mean Squared Error (RMSE): 0.88
+R-squared (R2) Score: 0.07
+
+--------------------------------------------------
+
+Code:
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+import numpy as np
+y_pred = regressor2.predict(x_test)
+mae = mean_absolute_error(y_test, y_pred)
+mse = mean_squared_error(y_test, y_pred)
+rmse = np.sqrt(mse)
+r2 = r2_score(y_test, y_pred)
+
+print(f"Mean Absolute Error (MAE): {mae:.2f}")
+print(f"Mean Squared Error (MSE): {mse:.2f}")
+print(f"Root Mean Squared Error (RMSE): {rmse:.2f}")
+print(f"R-squared (R2) Score: {r2:.2f}")
+
+Outputs:
+Mean Absolute Error (MAE): 0.72
+Mean Squared Error (MSE): 1.32
+Root Mean Squared Error (RMSE): 1.15
+R-squared (R2) Score: -0.61
+
+--------------------------------------------------
+
+Code:
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+import numpy as np
+y_pred = regressor3.predict(x_test)
+mae = mean_absolute_error(y_test, y_pred)
+mse = mean_squared_error(y_test, y_pred)
+rmse = np.sqrt(mse)
+r2 = r2_score(y_test, y_pred)
+
+print(f"Mean Absolute Error (MAE): {mae:.2f}")
+print(f"Mean Squared Error (MSE): {mse:.2f}")
+print(f"Root Mean Squared Error (RMSE): {rmse:.2f}")
+print(f"R-squared (R2) Score: {r2:.2f}")
+
+Outputs:
+Mean Absolute Error (MAE): 0.79
+Mean Squared Error (MSE): 1.90
+Root Mean Squared Error (RMSE): 1.38
+R-squared (R2) Score: -1.31
+
+--------------------------------------------------
+
+Code:
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+import numpy as np
+y_pred = regressor3.predict(x_test)
+mae = mean_absolute_error(y_test, y_pred)
+mse = mean_squared_error(y_test, y_pred)
+rmse = np.sqrt(mse)
+r2 = r2_score(y_test, y_pred)
+
+print(f"Mean Absolute Error (MAE): {mae:.2f}")
+print(f"Mean Squared Error (MSE): {mse:.2f}")
+print(f"Root Mean Squared Error (RMSE): {rmse:.2f}")
+print(f"R-squared (R2) Score: {r2:.2f}")
+
+Outputs:
+Mean Absolute Error (MAE): 0.79
+Mean Squared Error (MSE): 1.90
+Root Mean Squared Error (RMSE): 1.38
+R-squared (R2) Score: -1.31
+
+--------------------------------------------------
+
+Code:
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+
+config = (5,1,0)
+train_size = 0.7
+
+df = pd.read_csv('../Datasets/Merged_Dataset.csv')
+df.iloc[-350:, :].plot(y='Kp', legend=True, figsize=(20,4))
+plt.show()
+
+Outputs:
+
+--------------------------------------------------
+
+Code:
+# Autocorrelation
+from pandas.plotting import autocorrelation_plot
+autocorrelation_plot(df.iloc[-200:, :]['Kp'])
+# plt.figure(20,4)
+plt.show()
+
+Outputs:
+
+--------------------------------------------------
+
+Code:
+def parse(x):
+    return datetime.strptime(x, '%Y %m %d %H')
+
+from statsmodels.tsa.arima.model import ARIMA
+
+arima = ARIMA(df['Kp'], order=config)
+arima_fit = arima.fit()
+print(arima_fit.summary())
+
+Outputs:
+                               SARIMAX Results                                
+==============================================================================
+Dep. Variable:                     Kp   No. Observations:                 1108
+Model:                 ARIMA(5, 1, 0)   Log Likelihood               -1662.916
+Date:                Sat, 07 Oct 2023   AIC                           3337.832
+Time:                        15:59:36   BIC                           3367.889
+Sample:                             0   HQIC                          3349.199
+                               - 1108                                         
+Covariance Type:                  opg                                         
+==============================================================================
+                 coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+ar.L1         -0.3930      0.027    -14.741      0.000      -0.445      -0.341
+ar.L2         -0.2377      0.031     -7.696      0.000      -0.298      -0.177
+ar.L3         -0.1639      0.030     -5.423      0.000      -0.223      -0.105
+ar.L4         -0.1197      0.028     -4.232      0.000      -0.175      -0.064
+ar.L5         -0.1038      0.028     -3.713      0.000      -0.159      -0.049
+sigma2         1.1809      0.042     28.426      0.000       1.099       1.262
+===================================================================================
+Ljung-Box (L1) (Q):                   0.12   Jarque-Bera (JB):                74.99
+Prob(Q):                              0.73   Prob(JB):                         0.00
+Heteroskedasticity (H):               0.90   Skew:                             0.36
+Prob(H) (two-sided):                  0.30   Kurtosis:                         4.06
+===================================================================================
+
+Warnings:
+[1] Covariance matrix calculated using the outer product of gradients (complex-step).
+
+--------------------------------------------------
+
+Code:
+residuals = pd.DataFrame(arima_fit.resid)
+residuals.plot(figsize=(20,4))
+plt.show()
+
+Outputs:
+
+--------------------------------------------------
+
+Code:
+residuals.plot(kind='kde', figsize=(20,4))
+plt.show()
+
+Outputs:
+
+--------------------------------------------------
+
+Code:
+print(residuals.describe())
+
+Outputs:
+                 0
+count  1108.000000
+mean      0.001658
+std       1.088998
+min      -3.529157
+25%      -0.675991
+50%      -0.046415
+75%       0.646599
+max       4.918384
+
+--------------------------------------------------
+
+Code:
+X = df['Kp'].values
+size = int(len(X) * train_size)
+train, test = X[0:size], X[size:len(X)]
+history = [x for x in train]
+predictions = []
+counter = 0
+for t in range(len(test)):
+    arima = ARIMA(history, order=config)
+    fit = arima.fit()
+    output = fit.forecast()
+    yhat = output[0]
+    predictions.append(yhat)
+    obs = test[t]
+    history.append(obs)
+    counter += 1
+    print(f"{counter}: Predicted={yhat}, Expected={obs}")
+
+
+Outputs:
+1: Predicted=1.3928813855391622, Expected=2.333
+2: Predicted=2.01608350170288, Expected=3.0
+3: Predicted=2.63882696749635, Expected=3.333
+4: Predicted=2.9494870913385105, Expected=2.667
+5: Predicted=2.5901080281949547, Expected=4.667
+6: Predicted=3.8188686610819564, Expected=2.667
+7: Predicted=2.974812591991218, Expected=1.0
+8: Predicted=1.8585909714554494, Expected=2.333
+9: Predicted=2.293178675533257, Expected=0.667
+10: Predicted=1.3786566531093207, Expected=0.667
+11: Predicted=1.2741992924247012, Expected=0.333
+12: Predicted=0.6660519184431388, Expected=0.667
+13: Predicted=0.7423474233626631, Expected=3.333
+14: Predicted=2.4278980253744304, Expected=2.667
+15: Predicted=2.3038893321228917, Expected=4.0
+16: Predicted=3.216006504920882, Expected=3.0
+17: Predicted=2.7563880843182713, Expected=4.667
+18: Predicted=3.927780449742694, Expected=4.333
+19: Predicted=4.102721273015728, Expected=2.0
+20: Predicted=2.754528143733581, Expected=3.333
+21: Predicted=3.238805359931403, Expected=3.667
+22: Predicted=3.499097429468383, Expected=0.667
+23: Predicted=1.9145647602919083, Expected=1.333
+24: Predicted=1.7230298659553103, Expected=1.333
+25: Predicted=1.4550270230058209, Expected=0.667
+26: Predicted=1.225524681916795, Expected=0.667
+27: Predicted=0.9733879421622835, Expected=0.667
+28: Predicted=0.7063943248047997, Expected=1.333
+29: Predicted=1.1721047500818196, Expected=3.667
+30: Predicted=2.6829852090324615, Expected=2.333
+31: Predicted=2.215209391742116, Expected=1.667
+32: Predicted=1.7981215452733956, Expected=1.0
+33: Predicted=1.2095005606638094, Expected=2.333
+34: Predicted=2.0736013097561736, Expected=3.0
+35: Predicted=2.7375068806856633, Expected=2.333
+36: Predicted=2.384974320421343, Expected=1.667
+37: Predicted=1.8407053760804437, Expected=1.0
+38: Predicted=1.3066375249953741, Expected=0.333
+39: Predicted=0.8796522843074084, Expected=1.333
+40: Predicted=1.3543635124855267, Expected=1.667
+41: Predicted=1.5572962978773779, Expected=2.333
+42: Predicted=2.004973778815091, Expected=2.333
+43: Predicted=2.039155086418022, Expected=0.667
+44: Predicted=1.0699060954863135, Expected=1.667
+45: Predicted=1.5487922143661705, Expected=1.667
+46: Predicted=1.6308482695509163, Expected=1.0
+47: Predicted=1.3480182676957744, Expected=1.667
+48: Predicted=1.555473149440554, Expected=2.0
+49: Predicted=1.736529974441453, Expected=2.333
+50: Predicted=2.12748844365847, Expected=3.333
+51: Predicted=2.7834451128277857, Expected=4.0
+52: Predicted=3.36715083869604, Expected=3.0
+53: Predicted=3.001979737902893, Expected=2.667
+54: Predicted=2.752475311331411, Expected=2.0
+55: Predicted=2.29721987660597, Expected=1.333
+56: Predicted=1.8791360603675415, Expected=1.0
+57: Predicted=1.506477386092969, Expected=1.667
+58: Predicted=1.715194631115665, Expected=0.333
+59: Predicted=0.8828965854201489, Expected=0.333
+60: Predicted=0.6428210230486452, Expected=2.0
+61: Predicted=1.4957180875587264, Expected=2.333
+62: Predicted=1.9636231619447997, Expected=2.0
+63: Predicted=1.9163260968037896, Expected=0.333
+64: Predicted=0.7438110168581574, Expected=3.0
+65: Predicted=2.2448982480968556, Expected=2.333
+66: Predicted=2.2322193654629428, Expected=0.667
+67: Predicted=1.3283135518768414, Expected=1.333
+68: Predicted=1.3270534458621919, Expected=2.667
+69: Predicted=2.1231283031622095, Expected=2.0
+70: Predicted=2.124135996900161, Expected=1.0
+71: Predicted=1.3850386923737703, Expected=1.667
+72: Predicted=1.5143731273069898, Expected=2.0
+73: Predicted=1.8443517841958403, Expected=0.667
+74: Predicted=1.1850445542012062, Expected=2.0
+75: Predicted=1.7558841434864414, Expected=0.667
+76: Predicted=0.9504678211212529, Expected=3.0
+77: Predicted=2.3816419505357187, Expected=2.333
+78: Predicted=2.1569053838714205, Expected=1.667
+79: Predicted=1.813180348865229, Expected=1.0
+80: Predicted=1.3025775115515312, Expected=4.0
+81: Predicted=2.999870207434818, Expected=2.0
+82: Predicted=2.2981350396603095, Expected=1.333
+83: Predicted=1.771358548307179, Expected=1.333
+84: Predicted=1.457209016057625, Expected=1.667
+85: Predicted=1.6481022971269341, Expected=0.333
+86: Predicted=1.0277102063494707, Expected=0.0
+87: Predicted=0.45683655500043624, Expected=1.333
+88: Predicted=1.0556010406930016, Expected=2.667
+89: Predicted=2.0228857436305487, Expected=4.0
+90: Predicted=3.1272118300531453, Expected=5.0
+91: Predicted=3.9673243644004077, Expected=5.333
+92: Predicted=4.501473206709021, Expected=3.333
+93: Predicted=3.5701456109174634, Expected=0.667
+94: Predicted=1.82239400791462, Expected=0.0
+95: Predicted=1.0237304341194444, Expected=0.0
+96: Predicted=0.787966459202445, Expected=0.333
+97: Predicted=0.8610182498805177, Expected=1.0
+98: Predicted=1.0275777501142729, Expected=3.0
+99: Predicted=2.138325546042273, Expected=0.333
+100: Predicted=0.7097906471329742, Expected=2.0
+101: Predicted=1.5689463048945056, Expected=2.667
+102: Predicted=2.08712938087141, Expected=4.0
+103: Predicted=3.274064556306164, Expected=0.667
+104: Predicted=1.5506790099293881, Expected=1.0
+105: Predicted=1.1859457478760578, Expected=1.333
+106: Predicted=1.3996910569645795, Expected=1.667
+107: Predicted=1.7180540152403292, Expected=1.333
+108: Predicted=1.6198290769134687, Expected=2.0
+109: Predicted=1.7018043967031655, Expected=1.667
+110: Predicted=1.6102762015312513, Expected=1.667
+111: Predicted=1.651285032992375, Expected=1.0
+112: Predicted=1.2454347068005869, Expected=1.333
+113: Predicted=1.3390272020911866, Expected=1.333
+114: Predicted=1.3923801676005751, Expected=1.0
+115: Predicted=1.158969552172458, Expected=0.667
+116: Predicted=0.8916622723323918, Expected=1.0
+117: Predicted=0.9707582270296332, Expected=0.667
+118: Predicted=0.8076800233131819, Expected=1.667
+119: Predicted=1.3991173494584506, Expected=2.0
+120: Predicted=1.6877332754727739, Expected=1.333
+121: Predicted=1.359137052086438, Expected=2.0
+122: Predicted=1.7594993323011259, Expected=2.0
+123: Predicted=1.8030746010623993, Expected=0.667
+124: Predicted=1.112320456051205, Expected=1.0
+125: Predicted=1.166581971432494, Expected=0.667
+126: Predicted=0.8483492245203361, Expected=1.333
+127: Predicted=1.2862947503425208, Expected=0.333
+128: Predicted=0.6941565458384673, Expected=1.333
+129: Predicted=1.0989052115515845, Expected=1.333
+130: Predicted=1.2031229389879987, Expected=0.333
+131: Predicted=0.6138636740603299, Expected=0.333
+132: Predicted=0.5370347293387592, Expected=1.0
+133: Predicted=0.8020792461153192, Expected=1.0
+134: Predicted=0.9750786371266394, Expected=1.667
+135: Predicted=1.4200910147058645, Expected=0.333
+136: Predicted=0.5879022799184779, Expected=2.667
+137: Predicted=1.9319929722595528, Expected=1.667
+138: Predicted=1.621208736883618, Expected=2.333
+139: Predicted=2.057822244196616, Expected=2.0
+140: Predicted=1.9615276929538144, Expected=1.667
+141: Predicted=1.657580321818036, Expected=1.333
+142: Predicted=1.60238219963554, Expected=2.0
+143: Predicted=1.8527001520275643, Expected=3.0
+144: Predicted=2.6006258862143037, Expected=1.333
+145: Predicted=1.7018059983735094, Expected=2.333
+146: Predicted=2.1354810229209615, Expected=2.333
+147: Predicted=2.1617151159709067, Expected=1.0
+148: Predicted=1.4624484570989815, Expected=1.333
+149: Predicted=1.5585645053504613, Expected=3.0
+150: Predicted=2.3944445878440193, Expected=3.333
+151: Predicted=2.9402419907630577, Expected=1.333
+152: Predicted=1.844317300452294, Expected=1.0
+153: Predicted=1.2968885717996945, Expected=2.0
+154: Predicted=1.80240475540655, Expected=2.0
+155: Predicted=2.0352098008273507, Expected=2.667
+156: Predicted=2.5072194072824097, Expected=2.667
+157: Predicted=2.4147007364317408, Expected=2.0
+158: Predicted=2.0429917664560295, Expected=2.333
+159: Predicted=2.280253787628717, Expected=2.0
+160: Predicted=2.0824082836235838, Expected=1.333
+161: Predicted=1.696353671415202, Expected=0.667
+162: Predicted=1.1522468644384973, Expected=1.0
+163: Predicted=1.1454033729028323, Expected=0.333
+164: Predicted=0.7271818009428013, Expected=0.333
+165: Predicted=0.5914727769242776, Expected=0.667
+166: Predicted=0.6711361154935616, Expected=0.0
+167: Predicted=0.22202273020698793, Expected=0.667
+168: Predicted=0.5904754719823628, Expected=1.667
+169: Predicted=1.1958106138381113, Expected=3.0
+170: Predicted=2.2164177698860974, Expected=2.0
+171: Predicted=1.8882052670681233, Expected=0.333
+172: Predicted=0.7843402188706422, Expected=1.0
+173: Predicted=1.0309922924552803, Expected=0.667
+174: Predicted=0.8868817763507459, Expected=1.333
+175: Predicted=1.3759314632737145, Expected=2.0
+176: Predicted=1.7306079147954672, Expected=1.667
+177: Predicted=1.5028110366726988, Expected=1.333
+178: Predicted=1.3787100525191593, Expected=3.333
+179: Predicted=2.5633765561133552, Expected=2.333
+180: Predicted=2.258096098479439, Expected=1.667
+181: Predicted=1.918457463892701, Expected=2.333
+182: Predicted=2.1752631530475828, Expected=1.333
+183: Predicted=1.575081854354941, Expected=1.667
+184: Predicted=1.8671112464790642, Expected=1.333
+185: Predicted=1.5162234411986575, Expected=2.0
+186: Predicted=1.838892644678465, Expected=0.0
+187: Predicted=0.7048785976368328, Expected=0.333
+188: Predicted=0.5876457680822691, Expected=2.0
+189: Predicted=1.5560577259838921, Expected=1.0
+190: Predicted=1.1133256023428468, Expected=2.0
+191: Predicted=1.767041395521493, Expected=1.0
+192: Predicted=1.042037653695721, Expected=2.0
+193: Predicted=1.6649584558947785, Expected=1.333
+194: Predicted=1.4758661087299476, Expected=0.667
+195: Predicted=0.9491927146473877, Expected=1.667
+196: Predicted=1.5236462856041268, Expected=1.0
+197: Predicted=1.1031294799408218, Expected=2.0
+198: Predicted=1.778454240429347, Expected=2.667
+199: Predicted=2.21650049305482, Expected=2.333
+200: Predicted=2.1313738417460697, Expected=3.667
+201: Predicted=3.0759736285583292, Expected=2.333
+202: Predicted=2.3856426796847847, Expected=3.333
+203: Predicted=3.042098580561273, Expected=4.667
+204: Predicted=3.988451884410959, Expected=4.667
+205: Predicted=4.242616789233178, Expected=4.667
+206: Predicted=4.463181020564641, Expected=5.333
+207: Predicted=4.814029569352888, Expected=4.667
+208: Predicted=4.631327905178412, Expected=3.333
+209: Predicted=3.890712109603813, Expected=1.333
+210: Predicted=2.405188141990984, Expected=2.667
+211: Predicted=2.861421966456744, Expected=1.0
+212: Predicted=1.8477934286315387, Expected=1.333
+213: Predicted=1.778902055855568, Expected=2.0
+214: Predicted=1.9477492268584722, Expected=1.0
+215: Predicted=1.2528946761364586, Expected=0.667
+216: Predicted=1.0445373651164447, Expected=1.667
+217: Predicted=1.400025663518944, Expected=4.0
+218: Predicted=3.0109396629853213, Expected=1.667
+219: Predicted=1.986363413260861, Expected=2.333
+220: Predicted=2.1911684402026292, Expected=3.333
+221: Predicted=2.7570023710634417, Expected=0.667
+222: Predicted=1.4013533549342823, Expected=2.0
+223: Predicted=2.128766505320258, Expected=0.667
+224: Predicted=1.0513383487929508, Expected=1.667
+225: Predicted=1.6487032401622679, Expected=1.0
+226: Predicted=1.3040134047766005, Expected=3.0
+227: Predicted=2.2818792584009584, Expected=0.0
+228: Predicted=0.7977357559523437, Expected=1.333
+229: Predicted=1.197831939608213, Expected=1.333
+230: Predicted=1.288994031601704, Expected=3.0
+231: Predicted=2.318982337693611, Expected=1.333
+232: Predicted=1.7420683958613137, Expected=2.333
+233: Predicted=1.935963705394402, Expected=0.333
+234: Predicted=0.9317579373204993, Expected=1.333
+235: Predicted=1.2742840003950264, Expected=0.0
+236: Predicted=0.6615095194131544, Expected=0.0
+237: Predicted=0.2843640735752516, Expected=0.667
+238: Predicted=0.7085159084548363, Expected=1.333
+239: Predicted=0.9747158594341504, Expected=1.0
+240: Predicted=1.0185779305526772, Expected=1.333
+241: Predicted=1.0956011236550323, Expected=1.333
+242: Predicted=1.1543168239823234, Expected=1.0
+243: Predicted=1.0452925613767154, Expected=0.667
+244: Predicted=0.8684798983009521, Expected=5.333
+245: Predicted=3.6067340630532243, Expected=4.0
+246: Predicted=3.5342555993780707, Expected=5.0
+247: Predicted=4.271760539046667, Expected=2.0
+248: Predicted=2.6241743358334735, Expected=3.0
+249: Predicted=2.7711640628736425, Expected=1.667
+250: Predicted=2.484063105918916, Expected=4.333
+251: Predicted=3.667682655276894, Expected=2.667
+252: Predicted=3.1796938312988354, Expected=1.333
+253: Predicted=1.8408094492998943, Expected=4.0
+254: Predicted=3.346168701730873, Expected=2.0
+255: Predicted=2.3142781231165626, Expected=0.667
+256: Predicted=1.5802296116330654, Expected=1.667
+257: Predicted=1.7257796494200786, Expected=1.0
+258: Predicted=1.1923287099673863, Expected=1.333
+259: Predicted=1.5839290858692978, Expected=0.667
+260: Predicted=0.9885254031596062, Expected=0.333
+261: Predicted=0.5359438640598981, Expected=3.0
+262: Predicted=2.153785641996704, Expected=3.333
+263: Predicted=2.6845723433198247, Expected=2.667
+264: Predicted=2.5404332890849832, Expected=2.667
+265: Predicted=2.477162511438987, Expected=3.333
+266: Predicted=2.84389857153759, Expected=4.333
+267: Predicted=3.828893878683046, Expected=3.333
+268: Predicted=3.46249597472603, Expected=4.333
+269: Predicted=3.929475518579001, Expected=5.0
+270: Predicted=4.475536028549328, Expected=5.667
+271: Predicted=5.105848334690378, Expected=4.333
+272: Predicted=4.5897413443197, Expected=5.667
+273: Predicted=5.156806753063643, Expected=3.667
+274: Predicted=4.216965535813897, Expected=3.667
+275: Predicted=3.998206681100219, Expected=3.667
+276: Predicted=3.971084779022167, Expected=2.333
+277: Predicted=2.9531538956276604, Expected=3.333
+278: Predicted=3.4530877191631446, Expected=2.667
+279: Predicted=2.9113626418858267, Expected=2.333
+280: Predicted=2.617643926423572, Expected=2.0
+281: Predicted=2.3335122731211264, Expected=1.333
+282: Predicted=1.6971121748709053, Expected=2.0
+283: Predicted=2.0464501989362622, Expected=2.333
+284: Predicted=2.2272865960142996, Expected=2.0
+285: Predicted=2.0657850833356974, Expected=1.333
+286: Predicted=1.611688735354797, Expected=2.667
+287: Predicted=2.2338512392080796, Expected=1.333
+288: Predicted=1.6667570301148822, Expected=2.0
+289: Predicted=1.9437125016525973, Expected=2.0
+290: Predicted=1.9690693873276517, Expected=2.333
+291: Predicted=2.113666217452059, Expected=2.0
+292: Predicted=2.118553416717147, Expected=0.667
+293: Predicted=1.1505549387498477, Expected=5.667
+294: Predicted=3.9784835219282293, Expected=5.667
+295: Predicted=4.734934475735557, Expected=4.0
+296: Predicted=4.075153173317355, Expected=3.333
+297: Predicted=3.539783160496438, Expected=2.333
+298: Predicted=2.6390596429173137, Expected=3.333
+299: Predicted=3.4748024132088235, Expected=4.667
+300: Predicted=4.314719419848141, Expected=5.0
+301: Predicted=4.58646714614591, Expected=3.333
+302: Predicted=3.6759173136727927, Expected=3.667
+303: Predicted=3.6082150441487366, Expected=3.333
+304: Predicted=3.483429001133352, Expected=2.667
+305: Predicted=3.1252831887236394, Expected=2.333
+306: Predicted=2.8023696580572284, Expected=2.0
+307: Predicted=2.323404068110243, Expected=0.667
+308: Predicted=1.435840264849535, Expected=0.667
+309: Predicted=1.1339633304996939, Expected=0.0
+310: Predicted=0.5442001812417196, Expected=2.0
+311: Predicted=1.559933651697456, Expected=3.667
+312: Predicted=2.794786543643039, Expected=2.667
+313: Predicted=2.432514803813, Expected=0.667
+314: Predicted=1.2312302513962983, Expected=1.667
+315: Predicted=1.5025252194272172, Expected=2.667
+316: Predicted=2.323576473464337, Expected=2.0
+317: Predicted=2.2009600609530997, Expected=2.333
+318: Predicted=2.2747673829108206, Expected=3.667
+319: Predicted=2.9541848881007797, Expected=2.0
+320: Predicted=2.262106192557549, Expected=1.667
+321: Predicted=2.003752266194551, Expected=1.667
+322: Predicted=1.8231994842752264, Expected=3.0
+323: Predicted=2.596658325431126, Expected=1.0
+324: Predicted=1.6802397037044026, Expected=1.667
+325: Predicted=1.6961685111846303, Expected=1.333
+326: Predicted=1.476473503948092, Expected=1.0
+327: Predicted=1.2016326857739403, Expected=1.333
+328: Predicted=1.4619188255697122, Expected=2.0
+329: Predicted=1.6838347731719723, Expected=2.0
+330: Predicted=1.8609533191980787, Expected=3.0
+331: Predicted=2.4928382477927444, Expected=2.333
+332: Predicted=2.24395085810234, Expected=1.667
+333: Predicted=1.8539221590494968, Expected=2.0
+
+--------------------------------------------------
+
+Code:
+from sklearn.metrics import mean_squared_error, r2_score
+error = mean_squared_error(test, predictions)
+print(f"Test MSE: {error}")
+
+rmse = np.sqrt(error)
+print(f"Test RMSE: {rmse}")
+
+# Use r2 score
+r2 = r2_score(test, predictions)
+print(f"R2 Score: {r2}")
+
+Outputs:
+Test MSE: 1.1952196517066407
+Test RMSE: 1.0932610171896924
+R2 Score: 0.23246562913043933
+
+--------------------------------------------------
+
+Code:
+plt.figure(figsize=(20, 6))
+plt.plot(test)
+plt.plot(predictions, color='red')
+plt.show()
+
+Outputs:
+
+--------------------------------------------------
+
+
+--------------------------------------------------
+
+--------------------------------------------------
+
+2023-10-07 18:22:03
+
+--------------------------------------------------
+Code:
+import datetime
+
+def log_output_to_file(output_text, log_file_path):
+    timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    divider = '-' * 50  # Line divider
+    
+    with open(log_file_path, 'a') as log_file:
+        log_file.write(f'{timestamp}\n')
+        log_file.write(divider + '\n')
+        log_file.write(output_text)
+        log_file.write('\n\n')
+
+log_file_path = 'other_models.txt'
+
+Outputs:
+
+--------------------------------------------------
+
+Code:
+import pandas as pd
+
+Outputs:
+
+--------------------------------------------------
+
+Code:
+x = pd.read_csv('train-tests/x.csv')
+y = pd.read_csv('train-tests/y.csv')
+
+Outputs:
+
+--------------------------------------------------
+
+Code:
+print(x.shape, y.shape)
+
+Outputs:
+(1108, 28) (1108, 1)
+
+--------------------------------------------------
+
+Code:
+from sklearn.preprocessing import StandardScaler
+sc_X = StandardScaler()
+sc_y = StandardScaler()
+x_svm = sc_X.fit_transform(x)
+y_svm = sc_y.fit_transform(y)
+
+Outputs:
+
+--------------------------------------------------
+
+Code:
+# Train test split
+from sklearn.model_selection import train_test_split
+x_train, x_test, y_train, y_test = train_test_split(x_svm, y_svm, test_size=0.25)
+
+Outputs:
+
+--------------------------------------------------
+
+Code:
+from sklearn.svm import SVR
+regressor = SVR(kernel = 'rbf')
+regressor.fit(x_train, y_train)
+
+regressor2 = SVR(kernel='linear')
+regressor2.fit(x_train, y_train)
+
+regressor3 = SVR(kernel='poly')
+regressor3.fit(x_train, y_train)
+
+regressor4 = SVR(kernel='sigmoid')
+regressor4.fit(x_train, y_train)
+
+Outputs:
+c:\Users\hifia\anaconda3\envs\SpaceApps\lib\site-packages\sklearn\utils\validation.py:1184: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)
+c:\Users\hifia\anaconda3\envs\SpaceApps\lib\site-packages\sklearn\utils\validation.py:1184: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)
+c:\Users\hifia\anaconda3\envs\SpaceApps\lib\site-packages\sklearn\utils\validation.py:1184: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)
+c:\Users\hifia\anaconda3\envs\SpaceApps\lib\site-packages\sklearn\utils\validation.py:1184: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)
+
+--------------------------------------------------
+
+Code:
+print(x_test.shape, y_test.shape)
+
+Outputs:
+(277, 28) (277, 1)
+
+--------------------------------------------------
+
+Code:
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+import numpy as np
+y_pred = regressor.predict(x_test)
+mae = mean_absolute_error(y_test, y_pred)
+mse = mean_squared_error(y_test, y_pred)
+rmse = np.sqrt(mse)
+r2 = r2_score(y_test, y_pred)
+
+print(f"Mean Absolute Error (MAE): {mae:.2f}")
+print(f"Mean Squared Error (MSE): {mse:.2f}")
+print(f"Root Mean Squared Error (RMSE): {rmse:.2f}")
+print(f"R-squared (R2) Score: {r2:.2f}")
+
+
+Outputs:
+Mean Absolute Error (MAE): 0.69
+Mean Squared Error (MSE): 0.77
+Root Mean Squared Error (RMSE): 0.88
+R-squared (R2) Score: 0.07
+
+--------------------------------------------------
+
+Code:
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+import numpy as np
+y_pred = regressor2.predict(x_test)
+mae = mean_absolute_error(y_test, y_pred)
+mse = mean_squared_error(y_test, y_pred)
+rmse = np.sqrt(mse)
+r2 = r2_score(y_test, y_pred)
+
+print(f"Mean Absolute Error (MAE): {mae:.2f}")
+print(f"Mean Squared Error (MSE): {mse:.2f}")
+print(f"Root Mean Squared Error (RMSE): {rmse:.2f}")
+print(f"R-squared (R2) Score: {r2:.2f}")
+
+Outputs:
+Mean Absolute Error (MAE): 0.72
+Mean Squared Error (MSE): 1.32
+Root Mean Squared Error (RMSE): 1.15
+R-squared (R2) Score: -0.61
+
+--------------------------------------------------
+
+Code:
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+import numpy as np
+y_pred = regressor3.predict(x_test)
+mae = mean_absolute_error(y_test, y_pred)
+mse = mean_squared_error(y_test, y_pred)
+rmse = np.sqrt(mse)
+r2 = r2_score(y_test, y_pred)
+
+print(f"Mean Absolute Error (MAE): {mae:.2f}")
+print(f"Mean Squared Error (MSE): {mse:.2f}")
+print(f"Root Mean Squared Error (RMSE): {rmse:.2f}")
+print(f"R-squared (R2) Score: {r2:.2f}")
+
+Outputs:
+Mean Absolute Error (MAE): 0.79
+Mean Squared Error (MSE): 1.90
+Root Mean Squared Error (RMSE): 1.38
+R-squared (R2) Score: -1.31
+
+--------------------------------------------------
+
+Code:
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+import numpy as np
+y_pred = regressor3.predict(x_test)
+mae = mean_absolute_error(y_test, y_pred)
+mse = mean_squared_error(y_test, y_pred)
+rmse = np.sqrt(mse)
+r2 = r2_score(y_test, y_pred)
+
+print(f"Mean Absolute Error (MAE): {mae:.2f}")
+print(f"Mean Squared Error (MSE): {mse:.2f}")
+print(f"Root Mean Squared Error (RMSE): {rmse:.2f}")
+print(f"R-squared (R2) Score: {r2:.2f}")
+
+Outputs:
+Mean Absolute Error (MAE): 0.79
+Mean Squared Error (MSE): 1.90
+Root Mean Squared Error (RMSE): 1.38
+R-squared (R2) Score: -1.31
+
+--------------------------------------------------
+
+Code:
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+
+config = (10,2,0)
+train_size = 0.66
+
+df = pd.read_csv('../Datasets/Merged_Dataset.csv')
+df.iloc[-350:, :].plot(y='Kp', legend=True, figsize=(20,4))
+plt.show()
+
+Outputs:
+
+--------------------------------------------------
+
+Code:
+# Autocorrelation
+from pandas.plotting import autocorrelation_plot
+autocorrelation_plot(df.iloc[-200:, :]['Kp'])
+# plt.figure(20,4)
+plt.show()
+
+Outputs:
+
+--------------------------------------------------
+
+Code:
+def parse(x):
+    return datetime.strptime(x, '%Y %m %d %H')
+
+from statsmodels.tsa.arima.model import ARIMA
+
+arima = ARIMA(df['Kp'], order=config)
+arima_fit = arima.fit()
+print(arima_fit.summary())
+
+Outputs:
+                               SARIMAX Results                                
+==============================================================================
+Dep. Variable:                     Kp   No. Observations:                 1108
+Model:                ARIMA(10, 2, 0)   Log Likelihood               -1745.042
+Date:                Sat, 07 Oct 2023   AIC                           3512.085
+Time:                        18:19:14   BIC                           3567.178
+Sample:                             0   HQIC                          3532.922
+                               - 1108                                         
+Covariance Type:                  opg                                         
+==============================================================================
+                 coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+ar.L1         -1.2297      0.028    -44.276      0.000      -1.284      -1.175
+ar.L2         -1.2553      0.046    -27.395      0.000      -1.345      -1.166
+ar.L3         -1.1806      0.056    -21.173      0.000      -1.290      -1.071
+ar.L4         -1.0570      0.062    -17.061      0.000      -1.178      -0.936
+ar.L5         -0.9413      0.066    -14.227      0.000      -1.071      -0.812
+ar.L6         -0.8049      0.066    -12.154      0.000      -0.935      -0.675
+ar.L7         -0.6724      0.063    -10.687      0.000      -0.796      -0.549
+ar.L8         -0.4224      0.058     -7.297      0.000      -0.536      -0.309
+ar.L9         -0.2623      0.048     -5.465      0.000      -0.356      -0.168
+ar.L10        -0.0931      0.032     -2.891      0.004      -0.156      -0.030
+sigma2         1.3708      0.048     28.273      0.000       1.276       1.466
+===================================================================================
+Ljung-Box (L1) (Q):                   0.29   Jarque-Bera (JB):                51.69
+Prob(Q):                              0.59   Prob(JB):                         0.00
+Heteroskedasticity (H):               0.92   Skew:                             0.13
+Prob(H) (two-sided):                  0.41   Kurtosis:                         4.03
+===================================================================================
+
+Warnings:
+[1] Covariance matrix calculated using the outer product of gradients (complex-step).
+
+--------------------------------------------------
+
+Code:
+residuals = pd.DataFrame(arima_fit.resid)
+residuals.plot(figsize=(20,4))
+plt.show()
+
+Outputs:
+
+--------------------------------------------------
+
+Code:
+residuals.plot(kind='kde', figsize=(20,4))
+plt.show()
+
+Outputs:
+
+--------------------------------------------------
+
+Code:
+print(residuals.describe())
+
+Outputs:
+                 0
+count  1108.000000
+mean      0.002069
+std       1.174616
+min      -4.823301
+25%      -0.710924
+50%      -0.028306
+75%       0.711480
+max       4.690089
+
+--------------------------------------------------
+
+Code:
+X = df['Kp'].values
+size = int(len(X) * train_size)
+train, test = X[0:size], X[size:len(X)]
+history = [x for x in train]
+predictions = []
+counter = 0
+for t in range(len(test)):
+    arima = ARIMA(history, order=config)
+    fit = arima.fit()
+    output = fit.forecast()
+    yhat = output[0]
+    predictions.append(yhat)
+    obs = test[t]
+    history.append(obs)
+    counter += 1
+    print(f"{counter}: Predicted={yhat}, Expected={obs}")
+
+
+Outputs:
+1: Predicted=0.6907930025705782, Expected=0.333
+2: Predicted=0.5682460070106605, Expected=1.333
+3: Predicted=0.8391643521516072, Expected=0.667
+4: Predicted=0.543816627172127, Expected=1.0
+5: Predicted=1.0320136830693056, Expected=0.667
+6: Predicted=0.5620086611146633, Expected=0.667
+7: Predicted=0.6990780861719126, Expected=0.667
+8: Predicted=0.8372572128518493, Expected=1.0
+9: Predicted=0.7269229217503503, Expected=0.667
+10: Predicted=0.8656397527132543, Expected=1.333
+11: Predicted=1.0825402706037366, Expected=0.333
+12: Predicted=0.5147862272676386, Expected=1.333
+13: Predicted=1.1485608627571298, Expected=1.667
+14: Predicted=1.492448018306026, Expected=2.0
+15: Predicted=1.9440093287720128, Expected=1.667
+16: Predicted=1.822754731682012, Expected=3.0
+17: Predicted=2.802292083588174, Expected=1.667
+18: Predicted=2.195261351868947, Expected=3.0
+19: Predicted=2.7905432411017337, Expected=3.667
+20: Predicted=3.7434774530307537, Expected=2.667
+21: Predicted=3.1772288337361716, Expected=3.667
+22: Predicted=3.8114031097849304, Expected=3.333
+23: Predicted=3.648938610294881, Expected=1.333
+24: Predicted=2.298911232480567, Expected=0.333
+25: Predicted=0.6175650489323303, Expected=1.333
+26: Predicted=1.3728410124481685, Expected=0.0
+27: Predicted=0.34369644602058425, Expected=0.333
+28: Predicted=-0.016390228964450637, Expected=1.0
+29: Predicted=0.7546568558578894, Expected=0.667
+30: Predicted=0.3917981341712551, Expected=1.0
+31: Predicted=0.30626169370707457, Expected=0.333
+32: Predicted=-0.1104362194888982, Expected=1.333
+33: Predicted=0.8525317892242614, Expected=1.333
+34: Predicted=0.8210098080564081, Expected=2.0
+35: Predicted=1.8422947363344915, Expected=2.667
+36: Predicted=2.6508428473734615, Expected=2.0
+37: Predicted=2.2063442887239817, Expected=1.667
+38: Predicted=2.099217238661881, Expected=2.0
+39: Predicted=2.0337580891020943, Expected=1.333
+40: Predicted=1.742827789074966, Expected=1.333
+41: Predicted=1.517213271267265, Expected=2.333
+42: Predicted=2.315922822457003, Expected=2.0
+43: Predicted=2.313416427359952, Expected=1.333
+44: Predicted=1.5185152427069488, Expected=1.333
+45: Predicted=1.3281802218538554, Expected=2.333
+46: Predicted=2.084119480106529, Expected=3.0
+47: Predicted=2.608936800972057, Expected=3.333
+48: Predicted=3.1914103034518027, Expected=2.667
+49: Predicted=3.024320579997152, Expected=4.667
+50: Predicted=4.408398294631219, Expected=2.667
+51: Predicted=3.1840239919591715, Expected=1.0
+52: Predicted=1.6654231192041586, Expected=2.333
+53: Predicted=2.310785494462483, Expected=0.667
+54: Predicted=1.1960046683308363, Expected=0.667
+55: Predicted=0.9509075263138094, Expected=0.333
+56: Predicted=0.22587161232133598, Expected=0.667
+57: Predicted=0.7368873196112068, Expected=3.333
+58: Predicted=2.2044107230245484, Expected=2.667
+59: Predicted=2.0980851090283386, Expected=4.0
+60: Predicted=3.7052362345087273, Expected=3.0
+61: Predicted=2.687703095470343, Expected=4.667
+62: Predicted=4.466865926957723, Expected=4.333
+63: Predicted=4.487643109881136, Expected=2.0
+64: Predicted=2.8009936748548094, Expected=3.333
+65: Predicted=3.9173802838944294, Expected=3.667
+66: Predicted=3.9053547696201205, Expected=0.667
+67: Predicted=1.9743937380820804, Expected=1.333
+68: Predicted=1.3329382930115314, Expected=1.333
+69: Predicted=1.3933756855033812, Expected=0.667
+70: Predicted=0.6911141009428708, Expected=0.667
+71: Predicted=0.007961504834567923, Expected=0.667
+72: Predicted=0.4398407935593338, Expected=1.333
+73: Predicted=0.7984465212359275, Expected=3.667
+74: Predicted=2.3500512295411986, Expected=2.333
+75: Predicted=2.4100626700833723, Expected=1.667
+76: Predicted=1.7249502680256596, Expected=1.0
+77: Predicted=0.995860345075676, Expected=2.333
+78: Predicted=2.1987286045456176, Expected=3.0
+79: Predicted=2.7762090949168914, Expected=2.333
+80: Predicted=2.6113772865730347, Expected=1.667
+81: Predicted=2.469605301499581, Expected=1.0
+82: Predicted=1.3370062056722802, Expected=0.333
+83: Predicted=0.5715053983858568, Expected=1.333
+84: Predicted=0.8524279929941652, Expected=1.667
+85: Predicted=1.3681914332799927, Expected=2.333
+86: Predicted=2.1993848269160345, Expected=2.333
+87: Predicted=2.27955280344917, Expected=0.667
+88: Predicted=1.0208758093018346, Expected=1.667
+89: Predicted=1.3264944083127368, Expected=1.667
+90: Predicted=1.2877335748412087, Expected=1.0
+91: Predicted=1.1764435020383348, Expected=1.667
+92: Predicted=1.5699907621090308, Expected=2.0
+93: Predicted=2.1108980339657983, Expected=2.333
+94: Predicted=2.4567671428282383, Expected=3.333
+95: Predicted=2.8968715440710833, Expected=4.0
+96: Predicted=3.965275529195953, Expected=3.0
+97: Predicted=3.2824226946904727, Expected=2.667
+98: Predicted=2.882390883674157, Expected=2.0
+99: Predicted=2.5064867357067584, Expected=1.333
+100: Predicted=1.7090225923621154, Expected=1.0
+101: Predicted=1.2338930237489447, Expected=1.667
+102: Predicted=1.7555858103052713, Expected=0.333
+103: Predicted=0.7044454165349541, Expected=0.333
+104: Predicted=0.20112955086974882, Expected=2.0
+105: Predicted=1.3506371486290658, Expected=2.333
+106: Predicted=1.7500467904037647, Expected=2.0
+107: Predicted=1.6405727073188716, Expected=0.333
+108: Predicted=0.4354459652240801, Expected=3.0
+109: Predicted=2.520830487115963, Expected=2.333
+110: Predicted=2.126137897635056, Expected=0.667
+111: Predicted=1.110754891892324, Expected=1.333
+112: Predicted=1.5241841351318395, Expected=2.667
+113: Predicted=2.504615961497111, Expected=2.0
+114: Predicted=2.2842198793109665, Expected=1.0
+115: Predicted=1.102188287247539, Expected=1.667
+116: Predicted=1.88997481083933, Expected=2.0
+117: Predicted=1.792861004300011, Expected=0.667
+118: Predicted=0.7249549117994862, Expected=2.0
+119: Predicted=1.8579486297876655, Expected=0.667
+120: Predicted=0.8657344112624978, Expected=3.0
+121: Predicted=2.5049327269835997, Expected=2.333
+122: Predicted=2.2716894319004886, Expected=1.667
+123: Predicted=1.9812880921114577, Expected=1.0
+124: Predicted=1.1801225252342742, Expected=4.0
+125: Predicted=3.2097502807921763, Expected=2.0
+126: Predicted=2.554411987205599, Expected=1.333
+127: Predicted=1.4760973350201125, Expected=1.333
+128: Predicted=1.7868526012367596, Expected=1.667
+129: Predicted=1.6733907239749692, Expected=0.333
+130: Predicted=0.532321232216123, Expected=0.0
+131: Predicted=-0.058579243968869044, Expected=1.333
+132: Predicted=1.2282828417154363, Expected=2.667
+133: Predicted=1.8982295620619083, Expected=4.0
+134: Predicted=3.502959394500899, Expected=5.0
+135: Predicted=4.7132677709020685, Expected=5.333
+136: Predicted=5.2987736833262, Expected=3.333
+137: Predicted=3.887469486825633, Expected=0.667
+138: Predicted=1.5864062149688118, Expected=0.0
+139: Predicted=0.6028713046046217, Expected=0.0
+140: Predicted=0.28055254372250804, Expected=0.333
+141: Predicted=0.6324022163410759, Expected=1.0
+142: Predicted=1.1700531095524624, Expected=3.0
+143: Predicted=2.6815082867823925, Expected=0.333
+144: Predicted=0.3414685754192419, Expected=2.0
+145: Predicted=0.9722733289845329, Expected=2.667
+146: Predicted=1.6535467238816484, Expected=4.0
+147: Predicted=3.16464290000846, Expected=0.667
+148: Predicted=1.2433694009780414, Expected=1.0
+149: Predicted=1.4415317241565866, Expected=1.333
+150: Predicted=1.842374563623471, Expected=1.667
+151: Predicted=1.3881487522612574, Expected=1.333
+152: Predicted=1.7276433292759887, Expected=2.0
+153: Predicted=1.978610481432454, Expected=1.667
+154: Predicted=1.9185661889487169, Expected=1.667
+155: Predicted=1.4070562099175916, Expected=1.0
+156: Predicted=1.0589416708906136, Expected=1.333
+157: Predicted=1.0520128098725312, Expected=1.333
+158: Predicted=1.1029808770831924, Expected=1.0
+159: Predicted=1.1083826859155284, Expected=0.667
+160: Predicted=0.8943826851290092, Expected=1.0
+161: Predicted=0.8753527722216823, Expected=0.667
+162: Predicted=0.6518900551557598, Expected=1.667
+163: Predicted=1.292142472199073, Expected=2.0
+164: Predicted=1.7915561395591122, Expected=1.333
+165: Predicted=1.4126064090745891, Expected=2.0
+166: Predicted=1.870512621257559, Expected=2.0
+167: Predicted=1.966911229963329, Expected=0.667
+168: Predicted=1.0150628164179278, Expected=1.0
+169: Predicted=0.973630186987603, Expected=0.667
+170: Predicted=0.8908631475776593, Expected=1.333
+171: Predicted=1.3263669098567734, Expected=0.333
+172: Predicted=0.4600734939968687, Expected=1.333
+173: Predicted=1.2932782992698026, Expected=1.333
+174: Predicted=1.2057166240133135, Expected=0.333
+175: Predicted=0.24936770966388577, Expected=0.333
+176: Predicted=0.34651136085466105, Expected=1.0
+177: Predicted=0.5867549043493459, Expected=1.0
+178: Predicted=0.9135246879826783, Expected=1.667
+179: Predicted=1.393602451844866, Expected=0.333
+180: Predicted=0.743486523671234, Expected=2.667
+181: Predicted=2.300204611462952, Expected=1.667
+182: Predicted=1.648927625021337, Expected=2.333
+183: Predicted=2.3378028254827106, Expected=2.0
+184: Predicted=2.185820046901239, Expected=1.667
+185: Predicted=1.8566398687964043, Expected=1.333
+186: Predicted=1.7692613136507582, Expected=2.0
+187: Predicted=1.818516695089734, Expected=3.0
+188: Predicted=3.183563215143767, Expected=1.333
+189: Predicted=1.6348286204778208, Expected=2.333
+190: Predicted=2.46334970759621, Expected=2.333
+191: Predicted=2.407491626858314, Expected=1.0
+192: Predicted=1.1801344761752661, Expected=1.333
+193: Predicted=1.276060463040979, Expected=3.0
+194: Predicted=2.591564092578412, Expected=3.333
+195: Predicted=3.3188087945329645, Expected=1.333
+196: Predicted=1.6727985869594575, Expected=1.0
+197: Predicted=1.4752802136186567, Expected=2.0
+198: Predicted=1.7416209574943637, Expected=2.0
+199: Predicted=1.591142137355346, Expected=2.667
+200: Predicted=2.5530114715663537, Expected=2.667
+201: Predicted=2.819206983178079, Expected=2.0
+202: Predicted=2.312844346719738, Expected=2.333
+203: Predicted=2.268810876002634, Expected=2.0
+204: Predicted=2.0207421622133785, Expected=1.333
+205: Predicted=1.4207571344580459, Expected=0.667
+206: Predicted=0.7237238111068549, Expected=1.0
+207: Predicted=1.1364572342017523, Expected=0.333
+208: Predicted=0.48416053066439607, Expected=0.333
+209: Predicted=0.16164657153013273, Expected=0.667
+210: Predicted=0.4525351019758206, Expected=0.0
+211: Predicted=-0.20621300200119275, Expected=0.667
+212: Predicted=0.2108779635461624, Expected=1.667
+213: Predicted=1.0747145758726315, Expected=3.0
+214: Predicted=2.467513073517339, Expected=2.0
+215: Predicted=1.9816143003932656, Expected=0.333
+216: Predicted=0.8339745725859709, Expected=1.0
+217: Predicted=1.1053623786046418, Expected=0.667
+218: Predicted=0.6064701149504538, Expected=1.333
+219: Predicted=1.3461523066784487, Expected=2.0
+220: Predicted=2.0440442613881586, Expected=1.667
+221: Predicted=2.0674996605245033, Expected=1.333
+222: Predicted=1.5849128242212074, Expected=3.333
+223: Predicted=2.8176542329174534, Expected=2.333
+224: Predicted=2.4145116043311505, Expected=1.667
+225: Predicted=1.6826691941471055, Expected=2.333
+226: Predicted=2.4139032895305226, Expected=1.333
+227: Predicted=1.8086208065085025, Expected=1.667
+228: Predicted=1.7899138152438585, Expected=1.333
+229: Predicted=1.466964198785061, Expected=2.0
+230: Predicted=2.1666498445287505, Expected=0.0
+231: Predicted=0.2815853467959406, Expected=0.333
+232: Predicted=0.3005804313410896, Expected=2.0
+233: Predicted=1.5574169186626259, Expected=1.0
+234: Predicted=0.6478244861919369, Expected=2.0
+235: Predicted=1.7743438556856328, Expected=1.0
+236: Predicted=1.0380659403934585, Expected=2.0
+237: Predicted=1.8452291866759696, Expected=1.333
+238: Predicted=1.1619249462663663, Expected=0.667
+239: Predicted=0.8169087293045187, Expected=1.667
+240: Predicted=1.633791731566941, Expected=1.0
+241: Predicted=0.9508979208903341, Expected=2.0
+242: Predicted=2.158222858559512, Expected=2.667
+243: Predicted=2.4269954021716837, Expected=2.333
+244: Predicted=2.5159600701799087, Expected=3.667
+245: Predicted=3.433922023389693, Expected=2.333
+246: Predicted=2.567926550888843, Expected=3.333
+247: Predicted=3.473848447000604, Expected=4.667
+248: Predicted=4.336642632319844, Expected=4.667
+249: Predicted=5.013224935355395, Expected=4.667
+250: Predicted=5.173062328860466, Expected=5.333
+251: Predicted=5.582908187562382, Expected=4.667
+252: Predicted=5.426442286928809, Expected=3.333
+253: Predicted=3.8391609203919783, Expected=1.333
+254: Predicted=2.2116711134050173, Expected=2.667
+255: Predicted=2.7533665774688667, Expected=1.0
+256: Predicted=1.2570409099887374, Expected=1.333
+257: Predicted=1.3896291010439539, Expected=2.0
+258: Predicted=1.7342470500939657, Expected=1.0
+259: Predicted=0.7470847604010062, Expected=0.667
+260: Predicted=0.24758674119581514, Expected=1.667
+261: Predicted=0.6671482715842965, Expected=4.0
+262: Predicted=2.9823344893934904, Expected=1.667
+263: Predicted=1.424357454864361, Expected=2.333
+264: Predicted=2.3418974579438068, Expected=3.333
+265: Predicted=3.189606791892662, Expected=0.667
+266: Predicted=1.0707685057369498, Expected=2.0
+267: Predicted=1.9797172431377201, Expected=0.667
+268: Predicted=0.9789421853289633, Expected=1.667
+269: Predicted=1.8041660349967363, Expected=1.0
+270: Predicted=0.9679906620193246, Expected=3.0
+271: Predicted=2.813071482184867, Expected=0.0
+272: Predicted=0.5497021122964281, Expected=1.333
+273: Predicted=0.6829815823753056, Expected=1.333
+274: Predicted=1.2865685191572938, Expected=3.0
+275: Predicted=2.149242327587136, Expected=1.333
+276: Predicted=1.660044965713983, Expected=2.333
+277: Predicted=2.207388175336111, Expected=0.333
+278: Predicted=1.0821770186471396, Expected=1.333
+279: Predicted=0.9011720327391091, Expected=0.0
+280: Predicted=0.4124114121325855, Expected=0.0
+281: Predicted=-0.16285597572912347, Expected=0.667
+282: Predicted=0.6055442628580857, Expected=1.333
+283: Predicted=0.974348482069846, Expected=1.0
+284: Predicted=1.149679482369727, Expected=1.333
+285: Predicted=0.8726300546666623, Expected=1.333
+286: Predicted=1.2346962165459452, Expected=1.0
+287: Predicted=0.7696404156583869, Expected=0.667
+288: Predicted=0.6700253228533339, Expected=5.333
+289: Predicted=4.352724278182003, Expected=4.0
+290: Predicted=4.295038375960322, Expected=5.0
+291: Predicted=5.302324898534987, Expected=2.0
+292: Predicted=3.2790830602806196, Expected=3.0
+293: Predicted=3.203923476834416, Expected=1.667
+294: Predicted=2.1876281118232948, Expected=4.333
+295: Predicted=3.835791955093929, Expected=2.667
+296: Predicted=3.809111868026363, Expected=1.333
+297: Predicted=1.8603528513311902, Expected=4.0
+298: Predicted=4.088719426627737, Expected=2.0
+299: Predicted=1.9863700132409137, Expected=0.667
+300: Predicted=0.8600345845704229, Expected=1.667
+301: Predicted=0.9789407189689578, Expected=1.0
+302: Predicted=1.0557806971542627, Expected=1.333
+303: Predicted=1.0209113619103187, Expected=0.667
+304: Predicted=0.5621711641659277, Expected=0.333
+305: Predicted=0.4507137598357854, Expected=3.0
+306: Predicted=1.7921387414290129, Expected=3.333
+307: Predicted=2.840061706604046, Expected=2.667
+308: Predicted=2.8046997526818673, Expected=2.667
+309: Predicted=2.5350879122959964, Expected=3.333
+310: Predicted=3.3603931924009585, Expected=4.333
+311: Predicted=4.193270422853949, Expected=3.333
+312: Predicted=3.690381042236104, Expected=4.333
+313: Predicted=4.784125993068622, Expected=5.0
+314: Predicted=5.2803296957387875, Expected=5.667
+315: Predicted=5.971035717148683, Expected=4.333
+316: Predicted=5.087159352147246, Expected=5.667
+317: Predicted=5.711364933952552, Expected=3.667
+318: Predicted=4.479096585842729, Expected=3.667
+319: Predicted=3.944980788800895, Expected=3.667
+320: Predicted=4.015122455499977, Expected=2.333
+321: Predicted=2.707563657551275, Expected=3.333
+322: Predicted=3.2767923840111295, Expected=2.667
+323: Predicted=2.5828231973246183, Expected=2.333
+324: Predicted=2.3894925640759412, Expected=2.0
+325: Predicted=1.5477612914182473, Expected=1.333
+326: Predicted=1.1011306771557101, Expected=2.0
+327: Predicted=1.4441381383964371, Expected=2.333
+328: Predicted=1.6287636593583226, Expected=2.0
+329: Predicted=1.9197949434281187, Expected=1.333
+330: Predicted=1.2188826241855972, Expected=2.667
+331: Predicted=2.1847517188939225, Expected=1.333
+332: Predicted=1.399380996566714, Expected=2.0
+333: Predicted=1.632791489998548, Expected=2.0
+334: Predicted=1.9421803059705665, Expected=2.333
+335: Predicted=2.221875401780423, Expected=2.0
+336: Predicted=2.1221781889055116, Expected=0.667
+337: Predicted=0.9721056636562131, Expected=5.667
+338: Predicted=4.62080904499167, Expected=5.667
+339: Predicted=5.284442302315578, Expected=4.0
+340: Predicted=4.768160618946027, Expected=3.333
+341: Predicted=4.022984643139998, Expected=2.333
+342: Predicted=2.8891814973687433, Expected=3.333
+343: Predicted=3.3400327463613406, Expected=4.667
+344: Predicted=4.260678509882741, Expected=5.0
+345: Predicted=5.59636627676673, Expected=3.333
+346: Predicted=4.106658173622575, Expected=3.667
+347: Predicted=4.051389350460294, Expected=3.333
+348: Predicted=3.5012822701659694, Expected=2.667
+349: Predicted=2.3444515521004554, Expected=2.333
+350: Predicted=2.2785680382671143, Expected=2.0
+351: Predicted=2.1284990363304024, Expected=0.667
+352: Predicted=1.0584718449603772, Expected=0.667
+353: Predicted=0.5103850520349087, Expected=0.0
+354: Predicted=-0.1734662633911378, Expected=2.0
+355: Predicted=0.9333992440071723, Expected=3.667
+356: Predicted=2.63154945086398, Expected=2.667
+357: Predicted=2.4978922647619743, Expected=0.667
+358: Predicted=0.9755859542294765, Expected=1.667
+359: Predicted=1.2480445017006203, Expected=2.667
+360: Predicted=2.216889456397976, Expected=2.0
+361: Predicted=1.8854369242936588, Expected=2.333
+362: Predicted=2.5758949943970446, Expected=3.667
+363: Predicted=3.784741839289401, Expected=2.0
+364: Predicted=2.58544096297949, Expected=1.667
+365: Predicted=1.9211600187466427, Expected=1.667
+366: Predicted=1.7060228078665762, Expected=3.0
+367: Predicted=2.5601693888891277, Expected=1.0
+368: Predicted=1.386776583492487, Expected=1.667
+369: Predicted=1.8198823206653882, Expected=1.333
+370: Predicted=1.5130857694610165, Expected=1.0
+371: Predicted=0.7873583363117818, Expected=1.333
+372: Predicted=1.1787999263759388, Expected=2.0
+373: Predicted=1.541296695694709, Expected=2.0
+374: Predicted=1.8692377542814826, Expected=3.0
+375: Predicted=2.5479357320733333, Expected=2.333
+376: Predicted=2.5676256758665543, Expected=1.667
+377: Predicted=1.7984964318355383, Expected=2.0
+
+--------------------------------------------------
+
+Code:
+from sklearn.metrics import mean_squared_error, r2_score
+error = mean_squared_error(test, predictions)
+print(f"Test MSE: {error}")
+
+rmse = np.sqrt(error)
+print(f"Test RMSE: {rmse}")
+
+# Use r2 score
+r2 = r2_score(test, predictions)
+print(f"R2 Score: {r2}")
+
+Outputs:
+Test MSE: 1.3466890183761624
+Test RMSE: 1.1604693095365177
+R2 Score: 0.10239874368726987
+
+--------------------------------------------------
+
+Code:
+plt.figure(figsize=(20, 6))
+plt.plot(test)
+plt.plot(predictions, color='red')
+plt.show()
+
+Outputs:
+
+--------------------------------------------------
+
+Code:
+# import numpy as np
+
+# def split_sequences(sequences, n_steps): 
+#     X, y = list(), list() 
+#     for i in range(len(sequences)): 
+#         # find the end of this pattern 
+#         end_ix = i + n_steps 
+#         # check if we are beyond the dataset 
+#         if end_ix > len(sequences)-1: 
+#             break 
+#         # gather input and output parts of the pattern 
+#         seq_x, seq_y = sequences[i:end_ix], sequences[end_ix] 
+#         X.append(seq_x) 
+#         y.append(seq_y) 
+#     return np.array(X), np.array(y)
+
+# X, y = split_sequences(df.values, 3)
+
+Outputs:
+
+--------------------------------------------------
+
+
+--------------------------------------------------
+
+--------------------------------------------------
+
