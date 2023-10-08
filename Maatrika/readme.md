@@ -18,7 +18,7 @@ In this section, you can find detailed information about the files included in t
 
 ### Cleaning and Analyzing L2 Data 🧹🔍
 
-In this part of the project, we focused on exploring and cleaning Level 2 (L2) space weather data. We conducted a thorough analysis of the data, identifying patterns, outliers, and missing values.
+In this part of the project, we focused on exploring and cleaning Level 2 (L2) data. We conducted a thorough analysis of the data, identifying patterns, outliers, and missing values if any.
 
 ### Experimenting with Models on L2 Data 🤖🧪
 
@@ -34,7 +34,7 @@ While the results showed some promise, the models tested on L2 data were not sig
 
 ### Detailed Analysis of Attribute Relationships 📈🔗
 
-In this section, we delved into Level 1 (L1) space weather data. We conducted a detailed analysis of the relationships between attributes using Recursive Feature Elimination (RFE) and Random Forest Regressor (RF Regressor) techniques.
+In this section, we delved into Level 1 (L1) data. We conducted a detailed analysis of the relationships between attributes using Recursive Feature Elimination (RFE) and Random Forest Regressor (RF Regressor) techniques.
 
 ### Feature Selection Using RFE and RF Regressor 🧐✂️
 
@@ -74,5 +74,5 @@ It's important to note that despite our efforts to implement a full-fledged GRU 
 
 ## Conclusion 🚀🌠
 
-The work involved exploring and analyzing both L2 and L1 space weather data, experimenting with various machine learning models, and conducting rigorous feature selection analysis. While L2 models showed limited significance, our L1 data analysis provided valuable insights into feature prioritization for improved forecasting.
+The work involved exploring and analyzing both L2 and L1 data, experimenting with various machine learning models, and conducting rigorous feature selection analysis. While L2 models showed limited significance, our L1 data analysis provided valuable insights into feature prioritization for improved forecasting.
 
