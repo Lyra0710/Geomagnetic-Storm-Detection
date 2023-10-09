@@ -54,9 +54,6 @@ To get started with the project, follow these steps:
 
 Contributions to this project are welcome! Feel free to submit issues or pull requests.
 
-## License 📜
-
-This project is licensed under ........
 
 ## Acknowledgments 🙏
 
